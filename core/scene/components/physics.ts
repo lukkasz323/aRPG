@@ -10,7 +10,7 @@ export class Physics extends Component {
         super();
     }
 
-    render(ctx): void {
+    render(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.origin.x, this.origin.y, this.size.x, this.size.y);
     }
