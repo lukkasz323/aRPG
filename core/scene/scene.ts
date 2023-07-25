@@ -1,14 +1,14 @@
-import { Vector2 } from "../utils/vector2.js";
-import { Physics } from "./components/physics.js";
-import { Entity } from "./entities/entity.js";
-import { Player } from "./entities/player.js";
+import { Entity } from "./entities/Entity.js";
+import { Player } from "./entities/Player.js";
+import { UIElement } from "./entities/UIElement.js";
 
 export class Scene {
     entities: Entity[] = [];
 
     constructor() {
         this.entities.push(new Player());
-        
+        this.entities.push(new UIElement());
+
         console.log(this);
     }
 }

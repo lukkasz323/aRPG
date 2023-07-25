@@ -1,5 +1,5 @@
 import { renderGame } from "./render.js";
-import { Scene } from "./scene/scene.js";
+import { Scene } from "./scene/Scene.js";
 import { updateGame } from "./update.js";
 
 export class Game {

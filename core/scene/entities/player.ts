@@ -1,5 +1,5 @@
-import { Physics } from "../components/physics.js";
-import { Entity } from "./entity.js";
+import { Physics } from "../components/Physics.js";
+import { Entity } from "./Entity.js";
 
 export class Player extends Entity {
     physics: Physics = new Physics();
@@ -8,7 +8,7 @@ export class Player extends Entity {
         super();
 
         this.physics.size.x = 32;
-        this.physics.size.y = 64;
+        this.physics.size.y = 32;
     }
 
     update(): void {

@@ -1,5 +1,5 @@
-import { Entity } from "./scene/entities/entity.js";
-import { Scene } from "./scene/scene.js";
+import { Entity } from "./scene/entities/Entity.js";
+import { Scene } from "./scene/Scene.js";
 
 export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext("2d");
