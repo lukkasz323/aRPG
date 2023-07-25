@@ -1,3 +1,5 @@
 export class Entity {
-    update() {}
+    update(): void {}
+
+    render(ctx: CanvasRenderingContext2D): void {}
 }

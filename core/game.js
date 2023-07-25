@@ -2,7 +2,7 @@ import { renderGame } from "./render.js";
 import { Scene } from "./scene/scene.js";
 import { updateGame } from "./update.js";
 export class Game {
-    scene = new Scene;
+    scene = new Scene();
     canvas;
     constructor(canvas) {
         this.canvas = canvas;

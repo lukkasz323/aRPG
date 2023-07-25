@@ -3,7 +3,7 @@ import { Scene } from "./scene/scene.js";
 import { updateGame } from "./update.js";
 
 export class Game {
-    scene: Scene = new Scene;
+    scene: Scene = new Scene();
     canvas: HTMLCanvasElement;
 
     constructor(canvas: HTMLCanvasElement) {
