@@ -3,7 +3,7 @@ export function renderGame(scene, canvas) {
     renderBackground(ctx, canvas);
     renderScene(ctx, scene);
     function renderBackground(ctx, canvas) {
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     function renderScene(ctx, scene) {

@@ -1,18 +1,14 @@
 import { Player } from "./entities/Player.js";
-import { Box } from "./entities/Box.js";
+import { Rect as Rect } from "./entities/Rect.js";
 import { Label } from "./entities/Label.js";
 export class Scene {
     entities = [];
     constructor() {
         this.entities.push(new Player());
-        const hudBox = new Box();
-        hudBox.physics.size.x = 256;
-        hudBox.physics.size.y = 16;
+        const hudBox = new Rect({ x: 333, y: 123 });
         this.entities.push(hudBox);
-        const hudLabel = new Label();
-        hudLabel.physics.origin.x += 32;
-        hudLabel.physics.origin.y += 32;
+        const hudLabel = new Label({ x: 123, y: 56 }, "Aha");
         this.entities.push(hudLabel);
-        console.log(this);
+        console.log(this); // Debug
     }
 }

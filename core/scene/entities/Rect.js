@@ -1,6 +1,6 @@
 import { Physics } from "../components/Physics.js";
 import { Entity } from "./Entity.js";
-export class Box extends Entity {
+export class Rect extends Entity {
     physics = new Physics();
     constructor(origin) {
         super();

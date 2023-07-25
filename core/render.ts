@@ -1,4 +1,3 @@
-import { Entity } from "./scene/entities/Entity.js";
 import { Scene } from "./scene/Scene.js";
 
 export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
@@ -8,7 +7,7 @@ export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
     renderScene(ctx, scene);
 
     function renderBackground(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 

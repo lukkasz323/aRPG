@@ -4,7 +4,7 @@ import { Component } from "./Component.js";
 export class Physics extends Component {
     origin: Vector2 = new Vector2();
     size: Vector2 = new Vector2();
-    color: string = "#FFF";
+    color: string = "black";
 
     constructor() {
         super();
