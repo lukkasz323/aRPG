@@ -1,10 +1,11 @@
-import { Scene } from "./scene/Scene.js";
+import { Scene } from "./entities/Scene.js";
 
 export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext("2d");
 
     renderBackground(ctx, canvas);
-    renderScene(ctx, scene);
+    
+    scene.render(canvas);
 
     function renderBackground(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
         ctx.fillStyle = "white";
@@ -12,7 +13,7 @@ export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
     }
 
     function renderScene(ctx: CanvasRenderingContext2D, scene: Scene) {
-        for (const entities of scene.entities) {
+        for (const entities of scene.children) {
             entities.render(ctx);
         }
     }

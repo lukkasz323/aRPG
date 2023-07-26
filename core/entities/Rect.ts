@@ -1,16 +1,15 @@
-import { Vector2 } from "../../utils/Vector2.js";
-import { Physics } from "../components/Physics.js";
+import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
+import { Physics } from "./Physics.js";
 
 export class Rect extends Entity {
     physics: Physics = new Physics();
 
-    constructor(origin: Vector2) {
+    constructor(origin: Vector2, size: Vector2) {
         super();
 
         this.physics.origin = origin;
-
-        this.physics.size = {x: 32, y: 32};
+        this.physics.size = size;
     }
 
     render(ctx: CanvasRenderingContext2D): void {
