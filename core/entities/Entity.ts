@@ -6,7 +6,13 @@ export class Entity {
     //     this.parent = parent ? parent : null;
     // }
 
-    update(arg1?: any): void {}
+    _update(arg1?: any): void {}
 
-    render(arg1?: any): void {}
+    _render(arg1?: any): void {
+
+        for (const entity of this.children) {
+            entity._render();
+        }
+        console.log("render() on Entity", this);
+    }
 }

@@ -12,7 +12,9 @@ export class Rect extends Entity {
         this.physics.size = size;
     }
 
-    render(ctx: CanvasRenderingContext2D): void {
-        this.physics.render(ctx);
+    _render(ctx: CanvasRenderingContext2D): void {
+        super._render(ctx);
+
+        this.physics._render(ctx);
     }
 }

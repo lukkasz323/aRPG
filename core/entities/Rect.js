@@ -7,7 +7,8 @@ export class Rect extends Entity {
         this.physics.origin = origin;
         this.physics.size = size;
     }
-    render(ctx) {
-        this.physics.render(ctx);
+    _render(ctx) {
+        super._render(ctx);
+        this.physics._render(ctx);
     }
 }

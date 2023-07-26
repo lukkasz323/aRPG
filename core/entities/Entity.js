@@ -4,6 +4,11 @@ export class Entity {
     // constructor(parent?: Entity) {
     //     this.parent = parent ? parent : null;
     // }
-    update(arg1) { }
-    render(arg1) { }
+    _update(arg1) { }
+    _render(arg1) {
+        for (const entity of this.children) {
+            entity._render();
+        }
+        console.log("render() on Entity", this);
+    }
 }

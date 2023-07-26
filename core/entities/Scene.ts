@@ -18,22 +18,18 @@ export class Scene extends Entity {
         console.log(this); // Debug
     }
 
-    update(): void {
+    _update(): void {
         for (const entity of this.children) {
-            entity.update();
+            entity._update();
         }
     }
 
-    render(canvas: HTMLCanvasElement): void {
+    _render(canvas: HTMLCanvasElement): void {
         const ctx = canvas.getContext("2d");
+        super._render(ctx);
 
         // Background
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Entities
-        for (const entities of this.children) {
-            entities.render(ctx);
-        }
     }
 }

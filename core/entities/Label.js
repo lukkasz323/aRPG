@@ -12,7 +12,8 @@ export class Label extends Entity {
             this.text.size = size;
         }
     }
-    render(ctx) {
+    _render(ctx) {
+        super._render(ctx);
         ctx.fillStyle = this.physics.color;
         ctx.font = `${this.text.size}px ${this.text.font}`;
         ctx.fillText(this.text.value, this.physics.origin.x, this.physics.origin.y);

@@ -15,7 +15,9 @@ export class Label extends Entity {
         if (size) { this.text.size = size; }
     }
 
-    render(ctx: CanvasRenderingContext2D) {
+    _render(ctx: CanvasRenderingContext2D) {
+        super._render(ctx);
+
         ctx.fillStyle = this.physics.color;
         ctx.font = `${this.text.size}px ${this.text.font}`;
         ctx.fillText(this.text.value, this.physics.origin.x, this.physics.origin.y);

@@ -12,19 +12,16 @@ export class Scene extends Entity {
         this.children.push(new Label({ x: 0, y: 0 }, "Debug", 16));
         console.log(this); // Debug
     }
-    update() {
+    _update() {
         for (const entity of this.children) {
-            entity.update();
+            entity._update();
         }
     }
-    render(canvas) {
+    _render(canvas) {
         const ctx = canvas.getContext("2d");
+        super._render(ctx);
         // Background
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // Entities
-        for (const entities of this.children) {
-            entities.render(ctx);
-        }
     }
 }

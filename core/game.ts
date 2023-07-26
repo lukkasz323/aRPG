@@ -11,12 +11,12 @@ export class Game {
     run() {
         const fps = 60;
 
-        this.scene.render(this.canvas);
+        this.scene._render(this.canvas);
         setInterval(() => gameLoop(this.scene, this.canvas), 1000 / fps);
         
         function gameLoop(scene: Scene, canvas: HTMLCanvasElement) {
-            scene.update();
-            scene.render(canvas);
+            scene._update();
+            scene._render(canvas);
         }
     }
 }

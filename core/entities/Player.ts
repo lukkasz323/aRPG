@@ -12,11 +12,13 @@ export class Player extends Entity {
         this.physics.color = "blue";
     }
 
-    update(): void {
+    _update(): void {
 
     }
 
-    render(ctx: CanvasRenderingContext2D): void {
-        this.physics.render(ctx);
+    _render(ctx: CanvasRenderingContext2D): void {
+        super._render(ctx);
+
+        this.physics._render(ctx);
     }
 }

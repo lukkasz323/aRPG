@@ -5,7 +5,7 @@ export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
 
     renderBackground(ctx, canvas);
     
-    scene.render(canvas);
+    scene._render(canvas);
 
     function renderBackground(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
         ctx.fillStyle = "white";
@@ -14,7 +14,7 @@ export function renderGame(scene: Scene, canvas: HTMLCanvasElement) {
 
     function renderScene(ctx: CanvasRenderingContext2D, scene: Scene) {
         for (const entities of scene.children) {
-            entities.render(ctx);
+            entities._render(ctx);
         }
     }
 }
