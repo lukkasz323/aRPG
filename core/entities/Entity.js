@@ -1,13 +1,16 @@
 export class Entity {
-    // parent: Entity = null;
+    // scene: Scene;
     children = [];
-    // constructor(parent?: Entity) {
-    //     this.parent = parent ? parent : null;
+    renderOrder = 0;
+    // constructor(scene: Entity) {
+    //     this.scene = scene;
     // }
     _update(arg1) { }
-    _render(arg1) {
+    _render(arg1, arg2) { }
+    addToRenderQueue(renderQueue) {
         for (const entity of this.children) {
-            entity._render(arg1);
+            entity.addToRenderQueue(renderQueue);
         }
+        renderQueue.push(this);
     }
 }

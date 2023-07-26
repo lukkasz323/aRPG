@@ -8,7 +8,6 @@ export class Rect extends Entity {
         this.physics.size = size;
     }
     _render(ctx) {
-        super._render(ctx);
         this.physics._render(ctx);
     }
 }
