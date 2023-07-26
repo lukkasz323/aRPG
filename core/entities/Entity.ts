@@ -11,8 +11,12 @@ export class Entity {
     _render(arg1?: any): void {
 
         for (const entity of this.children) {
-            entity._render();
+            entity._render(arg1);
         }
         console.log("render() on Entity", this);
+    }
+
+    renderChildren(arg1?: any): void {
+        
     }
 }

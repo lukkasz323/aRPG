@@ -7,8 +7,10 @@ export class Entity {
     _update(arg1) { }
     _render(arg1) {
         for (const entity of this.children) {
-            entity._render();
+            entity._render(arg1);
         }
         console.log("render() on Entity", this);
+    }
+    renderChildren(arg1) {
     }
 }

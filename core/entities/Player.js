@@ -8,8 +8,7 @@ export class Player extends Entity {
         this.physics.size.y = 32;
         this.physics.color = "blue";
     }
-    _update() {
-    }
+    _update() { }
     _render(ctx) {
         super._render(ctx);
         this.physics._render(ctx);
