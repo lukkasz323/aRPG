@@ -13,10 +13,8 @@ export class Rect extends Entity {
     }
 
     _render(ctx: CanvasRenderingContext2D): void {
-        console.log(1);
         super._render(ctx);
-        console.log(2);
+        
         this.physics._render(ctx);
-        console.log(3);
     }
 }

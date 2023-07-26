@@ -9,8 +9,5 @@ export class Entity {
         for (const entity of this.children) {
             entity._render(arg1);
         }
-        console.log("render() on Entity", this);
-    }
-    renderChildren(arg1) {
     }
 }
