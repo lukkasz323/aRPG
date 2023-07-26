@@ -10,7 +10,6 @@ export class Physics extends Entity {
         console.log(5);
         ctx.fillStyle = this.color;
         console.log(6);
-        debugger;
         ctx.fillRect(this.origin.x, this.origin.y, this.size.x, this.size.y);
         console.log(7);
     }
