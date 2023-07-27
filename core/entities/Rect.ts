@@ -5,11 +5,12 @@ import { Physics } from "./Physics.js";
 export class Rect extends Entity {
     physics: Physics = new Physics();
 
-    constructor(origin: Vector2, size: Vector2) {
+    constructor(origin?: Vector2, size?: Vector2, color?: string) {
         super();
 
-        this.physics.origin = origin;
-        this.physics.size = size;
+        if (origin) { this.physics.origin = origin; }
+        if (size) {this.physics.size = size; }
+        if (color) { this.physics.color = color; }
     }
 
     _render(ctx: CanvasRenderingContext2D): void {

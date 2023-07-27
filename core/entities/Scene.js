@@ -1,16 +1,17 @@
+import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Player } from "./Player.js";
-import { Rect } from "./Rect.js";
 import { Label } from "./Label.js";
+import { Level } from "./Level.js";
+import { InputState } from "../InputState.js";
 export class Scene extends Entity {
     renderQueue = [];
+    input = new InputState();
     constructor() {
         super();
-        this.children.push(new Player({ x: 90, y: 90 }));
-        const background = new Rect({ x: 32, y: 32 }, { x: 320, y: 320 });
-        background.physics.color = "green";
-        this.children.push(background);
-        this.children.push(new Label({ x: 0, y: 0 }, "Debug", 16));
+        this.children.push(new Player(new Vector2(90, 90)));
+        this.children.push(new Label(new Vector2(16, 16), "Debug", 16));
+        this.children.push(new Level());
         console.log(this); // Debug
     }
     _update() {

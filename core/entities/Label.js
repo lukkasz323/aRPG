@@ -6,8 +6,12 @@ export class Label extends Entity {
     text = new Text();
     constructor(origin, value, size) {
         super();
-        this.physics.origin = origin;
-        this.text.value = value;
+        if (origin) {
+            this.physics.origin = origin;
+        }
+        if (value) {
+            this.text.value = value;
+        }
         if (size) {
             this.text.size = size;
         }

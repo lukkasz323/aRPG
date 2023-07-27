@@ -7,11 +7,11 @@ export class Label extends Entity {
     physics: Physics = new Physics();
     text: Text = new Text();
 
-    constructor(origin: Vector2, value?: string, size?: number) {
+    constructor(origin?: Vector2, value?: string, size?: number) {
         super();
 
-        this.physics.origin = origin;
-        this.text.value = value;
+        if (origin) { this.physics.origin = origin; }
+        if (value) { this.text.value = value; }
         if (size) { this.text.size = size; }
     }
 
