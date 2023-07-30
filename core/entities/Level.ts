@@ -3,6 +3,8 @@ import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
 
 export class Level extends Entity {
+    data: string;
+
     constructor() {
         super();
 

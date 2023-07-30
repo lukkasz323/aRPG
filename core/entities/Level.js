@@ -2,6 +2,7 @@ import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
 export class Level extends Entity {
+    data;
     constructor() {
         super();
         const offset = new Vector2(16, 16);

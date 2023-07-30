@@ -5,7 +5,6 @@ import { Label } from "./Label.js";
 import { Level } from "./Level.js";
 import { InputState } from "../InputState.js";
 export class Scene extends Entity {
-    renderQueue = [];
     input = new InputState();
     constructor() {
         super();

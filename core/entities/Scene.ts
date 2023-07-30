@@ -6,7 +6,6 @@ import { Level } from "./Level.js";
 import { InputState } from "../InputState.js";
 
 export class Scene extends Entity {
-    renderQueue: Entity[] = [];
     input: InputState = new InputState();
 
     constructor() {
