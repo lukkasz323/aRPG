@@ -5,12 +5,14 @@ import { Label } from "./Label.js";
 import { Level } from "./Level.js";
 import { InputState } from "../InputState.js";
 export class Scene extends Entity {
+    dataByName;
     input = new InputState();
-    constructor() {
+    constructor(dataByName) {
         super();
+        this.dataByName = dataByName;
         this.children.push(new Player(new Vector2(90, 90)));
         this.children.push(new Label(new Vector2(16, 16), "Debug", 16));
-        this.children.push(new Level());
+        this.children.push(new Level(dataByName["level"]));
         console.log(this); // Debug
     }
     _update() {

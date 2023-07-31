@@ -2,7 +2,7 @@ import { Scene } from "./entities/Scene.js";
 
 export class Game {
     dataByName: Map<string, string>;
-    scene: Scene = new Scene();
+    scene: Scene;
     canvas: HTMLCanvasElement;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -30,12 +30,12 @@ export class Game {
 
             dataByName[k] = v;
         }
-        
+
         this.dataByName = dataByName;
+        this.scene = new Scene(dataByName);
     }
 
     run() {
-        console.log(this.dataByName["level"]);
         if (!this.dataByName) {
             throw new Error("init() wasn't properly awaited first.");
         }
