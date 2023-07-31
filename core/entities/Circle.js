@@ -16,6 +16,9 @@ export class Circle extends Entity {
         }
     }
     _render(ctx) {
-        this.shape._render(ctx);
+        ctx.beginPath();
+        ctx.arc(this.shape.origin.x, this.shape.origin.y, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = this.shape.color;
+        ctx.fill();
     }
 }

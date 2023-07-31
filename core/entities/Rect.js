@@ -35,8 +35,8 @@ export class Rect extends Entity {
         if (distY <= (this.shape.origin.y / 2)) {
             return true;
         }
-        var dx = distX - this.shape.origin.x / 2;
-        var dy = distY - this.shape.origin.y / 2;
+        const dx = distX - this.shape.origin.x / 2;
+        const dy = distY - this.shape.origin.y / 2;
         return (dx * dx + dy * dy) <= (circle.radius * circle.radius);
     }
 }
