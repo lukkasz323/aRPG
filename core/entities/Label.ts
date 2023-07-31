@@ -1,23 +1,23 @@
 import { Vector2 } from "../utils/Vector2.js";
-import { Physics } from "./Physics.js";
+import { Shape } from "./Shape.js";
 import { Text } from "./Text.js";
 import { Entity } from "./Entity.js";
 
 export class Label extends Entity {
-    physics: Physics = new Physics();
+    shape: Shape = new Shape();
     text: Text = new Text();
 
     constructor(origin?: Vector2, value?: string, size?: number) {
         super();
 
-        if (origin) { this.physics.origin = origin; }
+        if (origin) { this.shape.origin = origin; }
         if (value) { this.text.value = value; }
         if (size) { this.text.size = size; }
     }
 
     _render(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = this.physics.color;
+        ctx.fillStyle = this.shape.color;
         ctx.font = `${this.text.size}px ${this.text.font}`;
-        ctx.fillText(this.text.value, this.physics.origin.x, this.physics.origin.y);
+        ctx.fillText(this.text.value, this.shape.origin.x, this.shape.origin.y);
     }
 }

@@ -1,13 +1,13 @@
-import { Physics } from "./Physics.js";
+import { Shape } from "./Shape.js";
 import { Text } from "./Text.js";
 import { Entity } from "./Entity.js";
 export class Label extends Entity {
-    physics = new Physics();
+    shape = new Shape();
     text = new Text();
     constructor(origin, value, size) {
         super();
         if (origin) {
-            this.physics.origin = origin;
+            this.shape.origin = origin;
         }
         if (value) {
             this.text.value = value;
@@ -17,8 +17,8 @@ export class Label extends Entity {
         }
     }
     _render(ctx) {
-        ctx.fillStyle = this.physics.color;
+        ctx.fillStyle = this.shape.color;
         ctx.font = `${this.text.size}px ${this.text.font}`;
-        ctx.fillText(this.text.value, this.physics.origin.x, this.physics.origin.y);
+        ctx.fillText(this.text.value, this.shape.origin.x, this.shape.origin.y);
     }
 }

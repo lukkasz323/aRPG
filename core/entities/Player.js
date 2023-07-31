@@ -1,17 +1,17 @@
-import { Physics } from "./Physics.js";
 import { Entity } from "./Entity.js";
+import { Rect } from "./Rect.js";
 export class Player extends Entity {
     renderOrder = 1;
-    physics = new Physics();
+    rect = new Rect();
     constructor(origin) {
         super();
-        this.physics.origin = origin;
-        this.physics.size.x = 32;
-        this.physics.size.y = 32;
-        this.physics.color = "blue";
+        this.rect.shape.origin = origin;
+        this.rect.size.x = 32;
+        this.rect.size.y = 32;
+        this.rect.shape.color = "blue";
     }
     _update() { }
     _render(ctx, renderQueue) {
-        this.physics._render(ctx);
+        this.rect._render(ctx);
     }
 }
