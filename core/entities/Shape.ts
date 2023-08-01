@@ -6,4 +6,5 @@ export class Shape extends Entity {
     acceleration: Vector2 = new Vector2();
     speed: number = 1;
     color: string = "black";
+    alpha: number = 1;
 }

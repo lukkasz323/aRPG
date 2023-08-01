@@ -6,19 +6,28 @@ import { Shape } from "./Shape.js";
 export class Rect extends Entity {
     shape: Shape = new Shape();
     size: Vector2 = new Vector2();
+    strokeOnly: boolean = false;
 
-    constructor(origin?: Vector2, size?: Vector2, color?: string, renderOrder?: number) {
+    constructor(origin?: Vector2, size?: Vector2, color?: string, alpha?: number, strokeOnly?: boolean, renderOrder?: number) {
         super();
 
         if (origin) { this.shape.origin = origin; }
         if (size) {this.size = size; }
         if (color) { this.shape.color = color; }
+        if (alpha) { this.shape.alpha = alpha; }
+        if (alpha) { this.strokeOnly = strokeOnly; }
         if (renderOrder) { this.renderOrder = renderOrder; }
     }
 
     _render(ctx: CanvasRenderingContext2D): void {
+        ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
-        ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        if (this.strokeOnly) {
+            ctx.lineWidth = 2;
+            ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        } else {
+            ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        }
     }
 
     isCollidingWithACircle(circle: Circle): boolean {

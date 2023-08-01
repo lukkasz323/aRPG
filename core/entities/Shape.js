@@ -5,4 +5,5 @@ export class Shape extends Entity {
     acceleration = new Vector2();
     speed = 1;
     color = "black";
+    alpha = 1;
 }

@@ -28,6 +28,7 @@ export class Scene extends Entity {
         const ctx = canvas.getContext("2d");
         // Background
         {
+            ctx.globalAlpha = 1;
             ctx.fillStyle = "#444";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }

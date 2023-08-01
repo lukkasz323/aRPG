@@ -4,7 +4,8 @@ import { Shape } from "./Shape.js";
 export class Rect extends Entity {
     shape = new Shape();
     size = new Vector2();
-    constructor(origin, size, color, renderOrder) {
+    strokeOnly = false;
+    constructor(origin, size, color, alpha, strokeOnly, renderOrder) {
         super();
         if (origin) {
             this.shape.origin = origin;
@@ -15,13 +16,26 @@ export class Rect extends Entity {
         if (color) {
             this.shape.color = color;
         }
+        if (alpha) {
+            this.shape.alpha = alpha;
+        }
+        if (alpha) {
+            this.strokeOnly = strokeOnly;
+        }
         if (renderOrder) {
             this.renderOrder = renderOrder;
         }
     }
     _render(ctx) {
+        ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
-        ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        if (this.strokeOnly) {
+            ctx.lineWidth = 2;
+            ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        }
+        else {
+            ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        }
     }
     isCollidingWithACircle(circle) {
         const distX = Math.abs(circle.shape.origin.x - this.shape.origin.x - this.size.x / 2);

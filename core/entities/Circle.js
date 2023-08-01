@@ -18,6 +18,7 @@ export class Circle extends Entity {
     _render(ctx) {
         ctx.beginPath();
         ctx.arc(this.shape.origin.x, this.shape.origin.y, this.radius, 0, 2 * Math.PI);
+        ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
         ctx.fill();
     }

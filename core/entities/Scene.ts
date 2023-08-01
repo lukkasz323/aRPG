@@ -36,6 +36,7 @@ export class Scene extends Entity {
 
         // Background
         {
+        ctx.globalAlpha = 1;
         ctx.fillStyle = "#444";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
