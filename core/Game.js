@@ -24,7 +24,7 @@ export class Game {
             dataByName[k] = v;
         }
         this.dataByName = dataByName;
-        this.scene = new Scene(dataByName);
+        this.scene = new Scene(dataByName, this.canvas);
     }
     run() {
         if (!this.dataByName) {

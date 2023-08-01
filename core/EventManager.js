@@ -3,6 +3,8 @@ export class EventManager {
     addEvents(canvas, scene) {
         canvas.addEventListener("click", (event) => this.onClick(event, scene, canvas));
         canvas.addEventListener("mousemove", (event) => this.onMouseMove(event, scene, canvas));
+        document.addEventListener("keydown", (event) => this.onKeyDown(event, scene));
+        document.addEventListener("keyup", (event) => this.onKeyUp(event, scene));
     }
     onMouseMove(event, scene, canvas) {
         const canvasBoundingClientRect = canvas.getBoundingClientRect();
@@ -10,5 +12,15 @@ export class EventManager {
     }
     onClick(event, scene, canvas) {
         scene.player.startMovement(scene);
+    }
+    onKeyDown(event, scene) {
+        if (event.code === "ShiftLeft") {
+            scene.player.inventory.open();
+        }
+    }
+    onKeyUp(event, scene) {
+        if (event.code === "ShiftLeft") {
+            scene.player.inventory.close();
+        }
     }
 }

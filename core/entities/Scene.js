@@ -7,12 +7,13 @@ import { InputState } from "../InputState.js";
 export class Scene extends Entity {
     dataByName;
     input = new InputState();
-    player = new Player(new Vector2(100, 100));
+    player;
     level;
-    constructor(dataByName) {
+    constructor(dataByName, canvas) {
         super();
         this.dataByName = dataByName;
         this.level = new Level(dataByName["level"]);
+        this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
         this.children.push(this.player);
         this.children.push(this.level);
         this.children.push(new Label(new Vector2(64, 64), "Debug", 16));
@@ -41,7 +42,9 @@ export class Scene extends Entity {
     }
     addToRenderQueue(renderQueue) {
         for (const entity of this.children) {
-            entity.addToRenderQueue(renderQueue);
+            if (entity.isEnabled) {
+                entity.addToRenderQueue(renderQueue);
+            }
         }
     }
 }

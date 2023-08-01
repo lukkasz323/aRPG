@@ -5,6 +5,8 @@ export class EventManager {
     addEvents(canvas: HTMLCanvasElement, scene: Scene): void {
         canvas.addEventListener("click", (event: PointerEvent) => this.onClick(event, scene, canvas));
         canvas.addEventListener("mousemove", (event: PointerEvent) => this.onMouseMove(event, scene, canvas));
+        document.addEventListener("keydown", (event: KeyboardEvent) => this.onKeyDown(event, scene));
+        document.addEventListener("keyup", (event: KeyboardEvent) => this.onKeyUp(event, scene));
     }
 
     onMouseMove(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
@@ -18,5 +20,17 @@ export class EventManager {
 
     onClick(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
         scene.player.startMovement(scene);
+    }
+
+    onKeyDown(event: KeyboardEvent, scene: Scene) {
+        if (event.code === "ShiftLeft") {
+            scene.player.inventory.open();
+        }
+    }
+    
+    onKeyUp(event: KeyboardEvent, scene: Scene) {
+        if (event.code === "ShiftLeft") {
+            scene.player.inventory.close();
+        }
     }
 }

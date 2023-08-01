@@ -4,7 +4,7 @@ import { Shape } from "./Shape.js";
 export class Rect extends Entity {
     shape = new Shape();
     size = new Vector2();
-    constructor(origin, size, color) {
+    constructor(origin, size, color, renderOrder) {
         super();
         if (origin) {
             this.shape.origin = origin;
@@ -14,6 +14,9 @@ export class Rect extends Entity {
         }
         if (color) {
             this.shape.color = color;
+        }
+        if (renderOrder) {
+            this.renderOrder = renderOrder;
         }
     }
     _render(ctx) {

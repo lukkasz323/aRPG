@@ -7,12 +7,13 @@ export class Rect extends Entity {
     shape: Shape = new Shape();
     size: Vector2 = new Vector2();
 
-    constructor(origin?: Vector2, size?: Vector2, color?: string) {
+    constructor(origin?: Vector2, size?: Vector2, color?: string, renderOrder?: number) {
         super();
 
         if (origin) { this.shape.origin = origin; }
         if (size) {this.size = size; }
         if (color) { this.shape.color = color; }
+        if (renderOrder) { this.renderOrder = renderOrder; }
     }
 
     _render(ctx: CanvasRenderingContext2D): void {

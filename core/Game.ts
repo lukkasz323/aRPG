@@ -34,7 +34,7 @@ export class Game {
         }
 
         this.dataByName = dataByName;
-        this.scene = new Scene(dataByName);
+        this.scene = new Scene(dataByName, this.canvas);
     }
 
     run(): void {

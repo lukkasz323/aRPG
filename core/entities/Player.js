@@ -2,18 +2,23 @@ import { Entity } from "./Entity.js";
 import { Vector2 } from "../utils/Vector2.js";
 import { Circle } from "./Circle.js";
 import { Character } from "./Character.js";
+import { Inventory } from "./Inventory.js";
 export class Player extends Entity {
-    renderOrder = 10;
     circle = new Circle();
-    character = new Character();
     lastPosition = new Vector2();
     movementTarget = new Vector2();
-    constructor(origin) {
+    character = new Character();
+    inventory;
+    constructor(origin, canvasSize) {
         super();
         this.circle.shape.origin = origin;
+        this.inventory = new Inventory(canvasSize);
         this.circle.radius = 16;
         this.circle.shape.speed = 5;
         this.circle.shape.color = "blue";
+        this.circle.renderOrder = 10;
+        this.children.push(this.inventory);
+        this.children.push(this.circle);
     }
     _update(scene) {
         this.#move();
@@ -56,8 +61,5 @@ export class Player extends Entity {
     }
     #getVectorToMousePosition(scene) {
         return new Vector2(scene.input.mouse.origin.x - this.circle.shape.origin.x, scene.input.mouse.origin.y - this.circle.shape.origin.y);
-    }
-    _render(ctx, renderQueue) {
-        this.circle._render(ctx);
     }
 }

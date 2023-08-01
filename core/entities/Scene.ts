@@ -8,14 +8,15 @@ import { InputState } from "../InputState.js";
 export class Scene extends Entity {
     dataByName: Map<string, string>;
     input: InputState = new InputState();
-    player: Player = new Player(new Vector2(100, 100));
+    player: Player;
     level: Level;
 
-    constructor(dataByName: Map<string, string>) {
+    constructor(dataByName: Map<string, string>, canvas) {
         super();
 
         this.dataByName = dataByName;
         this.level = new Level(dataByName["level"]);
+        this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
 
         this.children.push(this.player);
         this.children.push(this.level);
@@ -53,7 +54,9 @@ export class Scene extends Entity {
 
     addToRenderQueue(renderQueue: Entity[]): void {
         for (const entity of this.children) {
-            entity.addToRenderQueue(renderQueue);
+            if (entity.isEnabled) {
+                entity.addToRenderQueue(renderQueue);
+            }
         }
     }
 }

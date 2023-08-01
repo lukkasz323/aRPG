@@ -4,22 +4,28 @@ import { Circle } from "./Circle.js";
 import { Scene } from "./Scene.js";
 import { Rect } from "./Rect.js";
 import { Character } from "./Character.js";
+import { Inventory } from "./Inventory.js";
 
 export class Player extends Entity {
-    renderOrder: number = 10;
     circle: Circle = new Circle();
-    character: Character = new Character();
     lastPosition: Vector2 = new Vector2();
     movementTarget: Vector2 = new Vector2();
+    character: Character = new Character();
+    inventory: Inventory;
 
-    constructor(origin: Vector2) {
+    constructor(origin: Vector2, canvasSize: Vector2) {
         super();
 
         this.circle.shape.origin = origin;
+        this.inventory = new Inventory(canvasSize);
 
         this.circle.radius = 16;
         this.circle.shape.speed = 5;
         this.circle.shape.color = "blue";
+        this.circle.renderOrder = 10;
+
+        this.children.push(this.inventory);
+        this.children.push(this.circle);
     }
 
     _update(scene: Scene): void {
@@ -76,9 +82,5 @@ export class Player extends Entity {
 
     #getVectorToMousePosition(scene: Scene): Vector2 {
         return new Vector2(scene.input.mouse.origin.x - this.circle.shape.origin.x, scene.input.mouse.origin.y - this.circle.shape.origin.y);
-    }
-
-    _render(ctx: CanvasRenderingContext2D, renderQueue: Entity[]): void {
-        this.circle._render(ctx);
     }
 }
