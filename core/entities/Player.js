@@ -1,10 +1,12 @@
 import { Entity } from "./Entity.js";
+import { Vector2 } from "../utils/Vector2.js";
 import { Circle } from "./Circle.js";
 import { Character } from "./Character.js";
 export class Player extends Entity {
     renderOrder = 10;
     circle = new Circle();
     character = new Character();
+    lastPosition;
     constructor(origin) {
         super();
         this.circle.shape.origin = origin;
@@ -12,19 +14,17 @@ export class Player extends Entity {
         this.circle.shape.color = "blue";
     }
     _update(scene) {
-        let isMoveAllowed = true;
+        this.move();
         for (const child of scene.level.children) {
             const rect = child;
             if (this.circle.isCollidingWithARect(rect)) {
-                isMoveAllowed = false;
-                console.log(rect);
+                this.circle.shape.acceleration = new Vector2();
+                this.circle.shape.origin = new Vector2(this.lastPosition.x, this.lastPosition.y);
             }
-        }
-        if (isMoveAllowed) {
-            this.move();
         }
     }
     move() {
+        this.lastPosition = new Vector2(this.circle.shape.origin.x, this.circle.shape.origin.y);
         this.circle.shape.origin.x += this.circle.shape.acceleration.x * 5;
         this.circle.shape.origin.y += this.circle.shape.acceleration.y * 5;
         this.circle.shape.acceleration.x -= this.circle.shape.acceleration.x * 0.1;

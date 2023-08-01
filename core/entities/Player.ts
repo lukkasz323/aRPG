@@ -9,6 +9,7 @@ export class Player extends Entity {
     renderOrder: number = 10;
     circle: Circle = new Circle();
     character: Character = new Character();
+    lastPosition: Vector2;
 
     constructor(origin: Vector2) {
         super();
@@ -20,23 +21,20 @@ export class Player extends Entity {
     }
 
     _update(scene: Scene): void {
-        let isMoveAllowed = true;
-
+        this.move();
         for (const child of scene.level.children) {
             const rect = <Rect>child;
-
+            
             if (this.circle.isCollidingWithARect(rect)) {
-                isMoveAllowed = false;
-                console.log(rect);
+                this.circle.shape.acceleration = new Vector2();
+                this.circle.shape.origin = new Vector2(this.lastPosition.x, this.lastPosition.y);
             }
-        }
-
-        if (isMoveAllowed) {
-            this.move();
         }
     }
 
     move(): void {
+        this.lastPosition = new Vector2(this.circle.shape.origin.x, this.circle.shape.origin.y);
+
         this.circle.shape.origin.x += this.circle.shape.acceleration.x * 5;
         this.circle.shape.origin.y += this.circle.shape.acceleration.y * 5;
 
