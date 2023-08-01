@@ -17,12 +17,6 @@ export class EventManager {
     }
 
     onClick(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
-        const clickPosition: Vector2 = new Vector2(scene.input.mouse.origin.x, scene.input.mouse.origin.y);
-        
-        const playerShape = scene.player.circle.shape;
-        const direction = new Vector2(clickPosition.x - playerShape.origin.x, clickPosition.y - playerShape.origin.y);
-        direction.normalize();
-        playerShape.acceleration = direction;
-        console.log(playerShape.acceleration);
+        scene.player.startMovement(scene);
     }
 }

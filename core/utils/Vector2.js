@@ -7,9 +7,8 @@ export class Vector2 {
     }
     normalize() {
         const magnitude = Math.sqrt(this.x * this.x + this.y * this.y);
-        // Avoid division by zero
         if (magnitude === 0) {
-            this.x = 0;
+            this.x = 0; // Avoid division by zero
             this.y = 0;
         }
         else {
