@@ -7,24 +7,27 @@ import { InputState } from "../InputState.js";
 export class Scene extends Entity {
     dataByName;
     input = new InputState();
+    player = new Player(new Vector2(100, 100));
+    level;
     constructor(dataByName) {
         super();
         this.dataByName = dataByName;
-        this.children.push(new Player(new Vector2(90, 90)));
-        this.children.push(new Label(new Vector2(16, 16), "Debug", 16));
-        this.children.push(new Level(dataByName["level"]));
+        this.level = new Level(dataByName["level"]);
+        this.children.push(this.player);
+        this.children.push(this.level);
+        this.children.push(new Label(new Vector2(64, 64), "Debug", 16));
         console.log(this); // Debug
     }
     _update() {
         for (const entity of this.children) {
-            entity._update();
+            entity._update(this);
         }
     }
     _render(canvas) {
         const ctx = canvas.getContext("2d");
         // Background
         {
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "#444";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
         // Render Queue

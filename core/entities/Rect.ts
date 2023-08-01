@@ -20,7 +20,7 @@ export class Rect extends Entity {
         ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
     }
 
-    collidingWithACircle(circle: Circle): boolean {
+    isCollidingWithACircle(circle: Circle): boolean {
         const distX = Math.abs(circle.shape.origin.x - this.shape.origin.x - this.size.x / 2);
         const distY = Math.abs(circle.shape.origin.y - this.shape.origin.y - this.size.y / 2);
     

@@ -1,8 +1,10 @@
+import { EventManager } from "./EventManager.js";
 import { Scene } from "./entities/Scene.js";
 
 export class Game {
     dataByName: Map<string, string>;
     scene: Scene;
+    eventManager: EventManager = new EventManager();
     canvas: HTMLCanvasElement;
 
     constructor(canvas: HTMLCanvasElement) {
@@ -35,7 +37,7 @@ export class Game {
         this.scene = new Scene(dataByName);
     }
 
-    run() {
+    run(): void {
         if (!this.dataByName) {
             throw new Error("init() wasn't properly awaited first.");
         }
@@ -44,8 +46,9 @@ export class Game {
 
         this.scene._render(this.canvas);
         setInterval(() => gameLoop(this.scene, this.canvas), 1000 / fps);
+        this.eventManager.addEvents(this.canvas, this.scene);
         
-        function gameLoop(scene: Scene, canvas: HTMLCanvasElement) {
+        function gameLoop(scene: Scene, canvas: HTMLCanvasElement): void {
             scene._update();
             scene._render(canvas);
         }
