@@ -4,6 +4,7 @@ import { Player } from "./Player.js";
 import { Label } from "./Label.js";
 import { Level } from "./Level.js";
 import { InputState } from "../InputState.js";
+import { Item } from "./items/Item.js";
 
 export class Scene extends Entity {
     dataByName: Map<string, string>;

@@ -1,6 +1,6 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
-import { Item } from "./Item.js";
+import { Item } from "./items/Item.js";
 import { Rect } from "./Rect.js";
 
 export class Inventory extends Entity {

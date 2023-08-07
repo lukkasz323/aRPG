@@ -5,7 +5,7 @@ export class Level extends Entity {
     tiles;
     constructor(levelData) {
         super();
-        const splitLevelData = levelData.split("\r\n");
+        const splitLevelData = levelData.split(/\r\n|\r|\n/);
         const offset = new Vector2(0, 0);
         const cellSize = 32;
         for (let y = 0; y < splitLevelData.length; y++) {

@@ -1,3 +1,4 @@
+import { Item } from "./entities/items/Item.js";
 import { Scene } from "./entities/Scene.js";
 import { Vector2 } from "./utils/Vector2.js";
 
@@ -21,11 +22,12 @@ export class EventManager {
     onClick(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
         scene.player.startMovement(scene);
     }
-
+    
     onKeyDown(event: KeyboardEvent, scene: Scene) {
         if (event.code === "ShiftLeft") {
             scene.player.inventory.open();
         }
+        console.log(Item.generate()); // Debug
     }
     
     onKeyUp(event: KeyboardEvent, scene: Scene) {

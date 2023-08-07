@@ -1,3 +1,4 @@
+import { Item } from "./entities/items/Item.js";
 import { Vector2 } from "./utils/Vector2.js";
 export class EventManager {
     addEvents(canvas, scene) {
@@ -17,6 +18,7 @@ export class EventManager {
         if (event.code === "ShiftLeft") {
             scene.player.inventory.open();
         }
+        console.log(Item.generate()); // Debug
     }
     onKeyUp(event, scene) {
         if (event.code === "ShiftLeft") {
