@@ -21,8 +21,6 @@ export class EventManager {
         );
 
         mouse.worldOrigin = new Vector2(mouse.screenOrigin.x + scene.camera.origin.x, mouse.screenOrigin.y + scene.camera.origin.y);
-
-        // console.log(mouse.worldOrigin);
     }
 
     onMouseDown(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
@@ -33,7 +31,6 @@ export class EventManager {
         if (event.code === "ShiftLeft") {
             scene.player.inventory.open();
         }
-        console.log(Item.generate()); // Debug
     }
     
     onKeyUp(event: KeyboardEvent, scene: Scene) {

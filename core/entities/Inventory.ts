@@ -1,6 +1,7 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Item } from "./items/Item.js";
+import { ItemSlot } from "./ItemSlot.js";
 import { Rect } from "./Rect.js";
 
 export class Inventory extends Entity {
@@ -14,7 +15,7 @@ export class Inventory extends Entity {
         super();
 
         const size = new Vector2(272, 512);
-        const offset = new Vector2(180, 0);
+        const offset = new Vector2(176, 0);
         const origin = new Vector2(
             offset.x + ((canvas.width / 2) - (size.x / 2)), 
             offset.y + ((canvas.height / 2) - (size.y / 2)));
@@ -75,7 +76,7 @@ export class Inventory extends Entity {
             origin.y + (size.y - 8) - (this.backpackSize.y * backpackCellSize));
         for (let y = 0; y < this.backpackSize.y; y++) {
             for (let x = 0; x < this.backpackSize.x; x++) {
-                this.children.push(new Rect(
+                this.children.push(new ItemSlot(
                     new Vector2(
                         backpackOrigin.x + (x * backpackCellSize),
                         backpackOrigin.y + (y * backpackCellSize)),
@@ -91,10 +92,6 @@ export class Inventory extends Entity {
                     true,
                     21));
             }
-        }
-
-        for (const rect of <Rect[]>this.children) {
-            console.log(rect.renderFill);
         }
 
         this.close();

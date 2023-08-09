@@ -1,4 +1,3 @@
-import { Item } from "./entities/items/Item.js";
 import { Vector2 } from "./utils/Vector2.js";
 export class EventManager {
     addEvents(canvas, scene) {
@@ -12,7 +11,6 @@ export class EventManager {
         const mouse = scene.input.mouse;
         mouse.screenOrigin = new Vector2(Math.floor(event.x - canvasBoundingClientRect.x + 1), event.y - Math.floor(canvasBoundingClientRect.y));
         mouse.worldOrigin = new Vector2(mouse.screenOrigin.x + scene.camera.origin.x, mouse.screenOrigin.y + scene.camera.origin.y);
-        // console.log(mouse.worldOrigin);
     }
     onMouseDown(event, scene, canvas) {
         scene.player.startMovement(scene);
@@ -21,7 +19,6 @@ export class EventManager {
         if (event.code === "ShiftLeft") {
             scene.player.inventory.open();
         }
-        console.log(Item.generate()); // Debug
     }
     onKeyUp(event, scene) {
         if (event.code === "ShiftLeft") {
