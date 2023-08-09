@@ -14,7 +14,7 @@ export class Inventory extends Entity {
         super();
 
         const size = new Vector2(272, 512);
-        const offset = new Vector2(128, 0);
+        const offset = new Vector2(180, 0);
         const origin = new Vector2(
             offset.x + ((canvas.width / 2) - (size.x / 2)), 
             offset.y + ((canvas.height / 2) - (size.y / 2)));
@@ -30,7 +30,7 @@ export class Inventory extends Entity {
             alpha,
             renderScreenSpace,
             true,
-            false,
+            true,
             20);
 
         const uiRightHand = new Rect(
@@ -82,15 +82,19 @@ export class Inventory extends Entity {
                     new Vector2(
                         backpackCellSize,
                         backpackCellSize),
-                        undefined,
-                        undefined,
-                        undefined,
-                        alpha,
-                        renderScreenSpace,
-                        false,
-                        true,
-                        21));
+                    undefined,
+                    undefined,
+                    undefined,
+                    alpha,
+                    renderScreenSpace,
+                    false,
+                    true,
+                    21));
             }
+        }
+
+        for (const rect of <Rect[]>this.children) {
+            console.log(rect.renderFill);
         }
 
         this.close();

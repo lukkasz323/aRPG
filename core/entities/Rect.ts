@@ -18,8 +18,8 @@ export class Rect extends Entity {
 
         if (size) { this.size = size; }
         if (strokeColor) { this.strokeColor = strokeColor; }
-        if (renderFill) { this.renderFill = renderFill; }
-        if (renderStroke) { this.renderStroke = renderStroke; }
+        if (renderFill !== undefined) { this.renderFill = renderFill; }
+        if (renderStroke !== undefined) { this.renderStroke = renderStroke; }
         if (renderOrder) { this.renderOrder = renderOrder; }
     }
 

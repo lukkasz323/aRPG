@@ -16,10 +16,10 @@ export class Rect extends Entity {
         if (strokeColor) {
             this.strokeColor = strokeColor;
         }
-        if (renderFill) {
+        if (renderFill !== undefined) {
             this.renderFill = renderFill;
         }
-        if (renderStroke) {
+        if (renderStroke !== undefined) {
             this.renderStroke = renderStroke;
         }
         if (renderOrder) {

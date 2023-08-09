@@ -31,7 +31,6 @@ export class Game {
             throw new Error("init() wasn't properly awaited first.");
         }
         const fps = 60;
-        this.scene._render(this.canvas, this.scene);
         setInterval(() => gameLoop(this.scene, this.canvas), 1000 / fps);
         this.eventManager.addEvents(this.canvas, this.scene);
         function gameLoop(scene, canvas) {
