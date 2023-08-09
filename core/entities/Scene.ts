@@ -20,9 +20,9 @@ export class Scene extends Entity {
         this.level = new Level(dataByName["level"]);
         this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
 
-        this.children.push(this.camera);
         this.children.push(this.level);
         this.children.push(this.player);
+        this.children.push(this.camera);
         this.children.push(new Label(new Vector2(64, 64), "Debug", 16));
 
         console.log(this); // Debug
