@@ -24,6 +24,8 @@ export class Player extends Entity {
     }
 
     _update(scene: Scene): void {
+        super._update();
+
         this.#move();
         for (const child of scene.level.children) {
             const rect = <Rect>child;

@@ -48,7 +48,7 @@ export class Game {
         this.eventManager.addEvents(this.canvas, this.scene);
         
         function gameLoop(scene: Scene, canvas: HTMLCanvasElement): void {
-            scene._update();
+            scene._update(scene);
             scene._render(canvas, scene);
         }
     }

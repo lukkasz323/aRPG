@@ -14,6 +14,7 @@ export class Scene extends Entity {
     constructor(dataByName, canvas) {
         super();
         this.dataByName = dataByName;
+        this.canvas = canvas;
         this.level = new Level(dataByName["level"]);
         this.player = new Player(new Vector2(100, 100), canvas);
         this.camera = new Camera(canvas);
@@ -21,11 +22,6 @@ export class Scene extends Entity {
         this.children.push(this.player);
         this.children.push(this.camera);
         console.log(this); // Debug
-    }
-    _update() {
-        for (const entity of this.children) {
-            entity._update(this);
-        }
     }
     _render(canvas, scene) {
         const ctx = canvas.getContext("2d");

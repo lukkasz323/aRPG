@@ -17,6 +17,7 @@ export class Player extends Entity {
         this.children.push(this.circle);
     }
     _update(scene) {
+        super._update();
         this.#move();
         for (const child of scene.level.children) {
             const rect = child;

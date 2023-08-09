@@ -26,7 +26,7 @@ export class EventManager {
     onMouseDown(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
         scene.player.startMovement(scene);
     }
-    
+
     onKeyDown(event: KeyboardEvent, scene: Scene) {
         if (event.code === "ShiftLeft") {
             scene.player.inventory.open();

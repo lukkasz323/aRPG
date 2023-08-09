@@ -34,7 +34,7 @@ export class Game {
         setInterval(() => gameLoop(this.scene, this.canvas), 1000 / fps);
         this.eventManager.addEvents(this.canvas, this.scene);
         function gameLoop(scene, canvas) {
-            scene._update();
+            scene._update(scene);
             scene._render(canvas, scene);
         }
     }
