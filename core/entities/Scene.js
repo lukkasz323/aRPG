@@ -6,15 +6,17 @@ import { Level } from "./Level.js";
 import { Camera } from "./Camera.js";
 export class Scene extends Entity {
     dataByName;
+    canvas;
     input = new InputState();
-    camera = new Camera();
+    camera;
     level;
     player;
     constructor(dataByName, canvas) {
         super();
         this.dataByName = dataByName;
         this.level = new Level(dataByName["level"]);
-        this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
+        this.player = new Player(new Vector2(100, 100), canvas);
+        this.camera = new Camera(canvas);
         this.children.push(this.level);
         this.children.push(this.player);
         this.children.push(this.camera);

@@ -13,11 +13,11 @@ export class Player extends Entity {
     character: Character = new Character();
     inventory: Inventory;
 
-    constructor(origin: Vector2, canvasSize: Vector2) {
+    constructor(origin: Vector2, canvas: HTMLCanvasElement) {
         super();
 
         this.circle = new Circle(origin, 16, 4, "blue", undefined, undefined, 10);
-        this.inventory = new Inventory(canvasSize);
+        this.inventory = new Inventory(canvas);
 
         this.children.push(this.inventory);
         this.children.push(this.circle);

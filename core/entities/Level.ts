@@ -16,7 +16,7 @@ export class Level extends Entity {
                     this.children.push(
                         new Rect(
                             new Vector2(offset.x + (x * cellSize), offset.y + (y * cellSize)),
-                            new Vector2(cellSize, cellSize),
+                            new Vector2(cellSize, cellSize)
                             ));
                 }
             }

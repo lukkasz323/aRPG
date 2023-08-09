@@ -4,20 +4,20 @@ import { Shape } from "./Shape.js";
 export class Rect extends Entity {
     shape;
     size = new Vector2();
-    strokeColor;
+    strokeColor = "black";
     renderFill = true;
-    renderStroke = false;
+    renderStroke = true;
     constructor(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder) {
         super();
         this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
         if (size) {
             this.size = size;
         }
-        if (color) {
+        if (strokeColor) {
             this.strokeColor = strokeColor;
         }
         if (renderFill) {
-            this.renderStroke = renderFill;
+            this.renderFill = renderFill;
         }
         if (renderStroke) {
             this.renderStroke = renderStroke;

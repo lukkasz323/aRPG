@@ -7,9 +7,9 @@ import { Shape } from "./Shape.js";
 export class Rect extends Entity {
     shape: Shape;
     size: Vector2 = new Vector2();
-    strokeColor: string;
+    strokeColor: string = "black";
     renderFill: boolean = true;
-    renderStroke: boolean = false;
+    renderStroke: boolean = true;
 
     constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, renderScreenSpace?: boolean, renderFill?: boolean, renderStroke?: boolean, renderOrder?: number) {
         super();
@@ -17,8 +17,8 @@ export class Rect extends Entity {
         this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
 
         if (size) { this.size = size; }
-        if (color) { this.strokeColor = strokeColor; }
-        if (renderFill) { this.renderStroke = renderFill; }
+        if (strokeColor) { this.strokeColor = strokeColor; }
+        if (renderFill) { this.renderFill = renderFill; }
         if (renderStroke) { this.renderStroke = renderStroke; }
         if (renderOrder) { this.renderOrder = renderOrder; }
     }

@@ -10,14 +10,14 @@ export class Inventory extends Entity {
     head: Item;
     chest: Item;
 
-    constructor(canvasSize: Vector2) {
+    constructor(canvas: HTMLCanvasElement) {
         super();
 
         const size = new Vector2(272, 512);
         const offset = new Vector2(128, 0);
         const origin = new Vector2(
-            offset.x + ((canvasSize.x / 2) - (size.x / 2)), 
-            offset.y + ((canvasSize.y / 2) - (size.y / 2)));
+            offset.x + ((canvas.width / 2) - (size.x / 2)), 
+            offset.y + ((canvas.height / 2) - (size.y / 2)));
         const alpha = 0.9;
         const renderScreenSpace = true;
 
@@ -25,25 +25,13 @@ export class Inventory extends Entity {
             origin, 
             size,
             undefined, 
-            "gray",
+            undefined,
             undefined,
             alpha,
             renderScreenSpace,
             true,
             false,
             20);
-
-        const uiBorder = new Rect(
-            origin, 
-            size,
-            undefined, 
-            "black",
-            undefined,
-            alpha,
-            renderScreenSpace,
-            false,
-            true,
-            21);
 
         const uiRightHand = new Rect(
             new Vector2(
@@ -53,7 +41,7 @@ export class Inventory extends Entity {
                 64,
                 64),
             undefined,
-            "black",
+            undefined,
             undefined,
             alpha,
             renderScreenSpace,
@@ -69,7 +57,7 @@ export class Inventory extends Entity {
                 64,
                 64),
             undefined,
-            "black",
+            undefined,
             undefined,
             alpha,
             renderScreenSpace,
@@ -78,10 +66,9 @@ export class Inventory extends Entity {
             21);
 
         this.children.push(uiBackground);
-        this.children.push(uiBorder);
         this.children.push(uiRightHand);
         this.children.push(uiLeftHandBorder);
-
+        
         const backpackCellSize = 32;
         const backpackOrigin = new Vector2(
             origin.x + 8,
@@ -96,7 +83,7 @@ export class Inventory extends Entity {
                         backpackCellSize,
                         backpackCellSize),
                         undefined,
-                        "black",
+                        undefined,
                         undefined,
                         alpha,
                         renderScreenSpace,

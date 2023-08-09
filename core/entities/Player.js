@@ -9,10 +9,10 @@ export class Player extends Entity {
     movementTarget = new Vector2();
     character = new Character();
     inventory;
-    constructor(origin, canvasSize) {
+    constructor(origin, canvas) {
         super();
         this.circle = new Circle(origin, 16, 4, "blue", undefined, undefined, 10);
-        this.inventory = new Inventory(canvasSize);
+        this.inventory = new Inventory(canvas);
         this.children.push(this.inventory);
         this.children.push(this.circle);
     }

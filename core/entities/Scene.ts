@@ -8,17 +8,19 @@ import { Camera } from "./Camera.js";
 
 export class Scene extends Entity {
     dataByName: Map<string, string>;
+    canvas: HTMLCanvasElement;
     input: InputState = new InputState();
-    camera: Camera = new Camera();
+    camera: Camera;
     level: Level;
     player: Player;
 
-    constructor(dataByName: Map<string, string>, canvas) {
+    constructor(dataByName: Map<string, string>, canvas: HTMLCanvasElement) {
         super();
 
         this.dataByName = dataByName;
         this.level = new Level(dataByName["level"]);
-        this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
+        this.player = new Player(new Vector2(100, 100), canvas);
+        this.camera = new Camera(canvas);
 
         this.children.push(this.level);
         this.children.push(this.player);
