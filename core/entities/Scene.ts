@@ -23,7 +23,6 @@ export class Scene extends Entity {
         this.children.push(this.level);
         this.children.push(this.player);
         this.children.push(this.camera);
-        this.children.push(new Label(new Vector2(64, 64), "Debug", 16));
 
         console.log(this); // Debug
     }
@@ -55,13 +54,13 @@ export class Scene extends Entity {
             }
         }
         
-        // Debug
-        {
-            ctx.globalAlpha = 1;
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "cyan";
-            ctx.strokeRect(0, 0, canvas.width / 2, canvas.height / 2)
-        }
+        // // Debug crosshair
+        // {
+        //     ctx.globalAlpha = 1;
+        //     ctx.lineWidth = 2;
+        //     ctx.strokeStyle = "cyan";
+        //     ctx.strokeRect(0, 0, canvas.width / 2, canvas.height / 2)
+        // }
     }
 
     addToRenderQueue(renderQueue: Entity[]): void {

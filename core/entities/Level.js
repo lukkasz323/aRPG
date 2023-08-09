@@ -15,8 +15,5 @@ export class Level extends Entity {
                 }
             }
         }
-        for (const rect of this.children) {
-            console.log(rect.size);
-        }
     }
 }

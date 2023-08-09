@@ -10,12 +10,8 @@ export class Label extends Entity {
     constructor(origin?: Vector2, value?: string, size?: number) {
         super();
 
-        this.shape = new Shape();
-        this.text = new Text();
-
-        if (origin) { this.shape.origin = origin; }
-        if (value) { this.text.value = value; }
-        if (size) { this.text.size = size; }
+        this.shape = new Shape(origin);
+        this.text = new Text(value, size);
     }
 
     _render(ctx: CanvasRenderingContext2D) {
