@@ -5,8 +5,8 @@ import { Vector2 } from "./utils/Vector2.js";
 
 export class EventManager {
     addEvents(canvas: HTMLCanvasElement, scene: Scene): void {
-        canvas.addEventListener("click", (event: PointerEvent) => this.onClick(event, scene, canvas));
         canvas.addEventListener("mousemove", (event: PointerEvent) => this.onMouseMove(event, scene, canvas));
+        canvas.addEventListener("mousedown", (event: PointerEvent) => this.onMouseDown(event, scene, canvas));
         document.addEventListener("keydown", (event: KeyboardEvent) => this.onKeyDown(event, scene));
         document.addEventListener("keyup", (event: KeyboardEvent) => this.onKeyUp(event, scene));
     }
@@ -25,7 +25,7 @@ export class EventManager {
         // console.log(mouse.worldOrigin);
     }
 
-    onClick(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
+    onMouseDown(event: PointerEvent, scene: Scene, canvas: HTMLCanvasElement): void {
         scene.player.startMovement(scene);
     }
     
