@@ -4,11 +4,14 @@ import { Text } from "./Text.js";
 import { Entity } from "./Entity.js";
 
 export class Label extends Entity {
-    shape: Shape = new Shape();
-    text: Text = new Text();
+    shape: Shape;
+    text: Text;
 
     constructor(origin?: Vector2, value?: string, size?: number) {
         super();
+
+        this.shape = new Shape();
+        this.text = new Text();
 
         if (origin) { this.shape.origin = origin; }
         if (value) { this.text.value = value; }

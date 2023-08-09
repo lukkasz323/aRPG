@@ -7,7 +7,7 @@ import { Character } from "./Character.js";
 import { Inventory } from "./Inventory.js";
 
 export class Player extends Entity {
-    circle: Circle = new Circle();
+    circle: Circle;
     lastPosition: Vector2 = new Vector2();
     movementTarget: Vector2 = new Vector2();
     character: Character = new Character();
@@ -16,13 +16,8 @@ export class Player extends Entity {
     constructor(origin: Vector2, canvasSize: Vector2) {
         super();
 
-        this.circle.shape.origin = origin;
+        this.circle = new Circle(origin, 16, 4, "blue", undefined, undefined, 10);
         this.inventory = new Inventory(canvasSize);
-
-        this.circle.radius = 16;
-        this.circle.shape.speed = 5;
-        this.circle.shape.color = "blue";
-        this.circle.renderOrder = 10;
 
         this.children.push(this.inventory);
         this.children.push(this.circle);
@@ -81,6 +76,8 @@ export class Player extends Entity {
     }
 
     #getVectorToMousePosition(scene: Scene): Vector2 {
-        return new Vector2(scene.input.mouse.origin.x - this.circle.shape.origin.x, scene.input.mouse.origin.y - this.circle.shape.origin.y);
+        return new Vector2(
+            scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, 
+            scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
     }
 }

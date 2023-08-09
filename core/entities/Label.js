@@ -2,10 +2,12 @@ import { Shape } from "./Shape.js";
 import { Text } from "./Text.js";
 import { Entity } from "./Entity.js";
 export class Label extends Entity {
-    shape = new Shape();
-    text = new Text();
+    shape;
+    text;
     constructor(origin, value, size) {
         super();
+        this.shape = new Shape();
+        this.text = new Text();
         if (origin) {
             this.shape.origin = origin;
         }

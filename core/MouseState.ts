@@ -1,5 +1,6 @@
 import { Vector2 } from "./utils/Vector2.js";
 
 export class MouseState {
-    origin: Vector2 = new Vector2();
+    screenOrigin: Vector2 = new Vector2();
+    worldOrigin: Vector2 = new Vector2();
 }

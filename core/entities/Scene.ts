@@ -1,16 +1,17 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
+import { InputState } from "../InputState.js";
 import { Player } from "./Player.js";
 import { Label } from "./Label.js";
 import { Level } from "./Level.js";
-import { InputState } from "../InputState.js";
-import { Item } from "./items/Item.js";
+import { Camera } from "./Camera.js";
 
 export class Scene extends Entity {
     dataByName: Map<string, string>;
     input: InputState = new InputState();
-    player: Player;
+    camera: Camera = new Camera();
     level: Level;
+    player: Player;
 
     constructor(dataByName: Map<string, string>, canvas) {
         super();
@@ -19,8 +20,9 @@ export class Scene extends Entity {
         this.level = new Level(dataByName["level"]);
         this.player = new Player(new Vector2(100, 100), new Vector2(canvas.width, canvas.height));
 
-        this.children.push(this.player);
+        this.children.push(this.camera);
         this.children.push(this.level);
+        this.children.push(this.player);
         this.children.push(new Label(new Vector2(64, 64), "Debug", 16));
 
         console.log(this); // Debug
@@ -32,14 +34,14 @@ export class Scene extends Entity {
         }
     }
 
-    _render(canvas: HTMLCanvasElement): void {
+    _render(canvas: HTMLCanvasElement, scene: Scene): void {
         const ctx = canvas.getContext("2d");
 
         // Background
         {
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = "#444";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = "#444";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
 
         // Render Queue
@@ -49,8 +51,16 @@ export class Scene extends Entity {
             this.addToRenderQueue(renderQueue);
     
             for (const entity of renderQueue.sort((a, b) => a.renderOrder - b.renderOrder)) {
-                entity._render(ctx);
+                entity._render(ctx, scene);
             }
+        }
+        
+        // Debug
+        {
+            ctx.globalAlpha = 1;
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "cyan";
+            ctx.strokeRect(0, 0, canvas.width / 2, canvas.height / 2)
         }
     }
 

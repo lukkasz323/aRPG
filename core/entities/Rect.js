@@ -2,39 +2,50 @@ import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Shape } from "./Shape.js";
 export class Rect extends Entity {
-    shape = new Shape();
+    shape;
     size = new Vector2();
-    strokeOnly = false;
-    constructor(origin, size, color, alpha, strokeOnly, renderOrder) {
+    strokeColor;
+    renderFill = true;
+    renderStroke = false;
+    constructor(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder) {
         super();
-        if (origin) {
-            this.shape.origin = origin;
-        }
+        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
         if (size) {
             this.size = size;
         }
         if (color) {
-            this.shape.color = color;
+            this.strokeColor = strokeColor;
         }
-        if (alpha) {
-            this.shape.alpha = alpha;
+        if (renderFill) {
+            this.renderStroke = renderFill;
         }
-        if (alpha) {
-            this.strokeOnly = strokeOnly;
+        if (renderStroke) {
+            this.renderStroke = renderStroke;
         }
         if (renderOrder) {
             this.renderOrder = renderOrder;
         }
     }
-    _render(ctx) {
+    _render(ctx, scene) {
         ctx.globalAlpha = this.shape.alpha;
-        ctx.fillStyle = this.shape.color;
-        if (this.strokeOnly) {
-            ctx.lineWidth = 2;
-            ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        if (this.renderFill) {
+            ctx.fillStyle = this.shape.color;
+            if (this.shape.renderScreenSpace) {
+                ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+            }
+            else {
+                ctx.fillRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.size.x, this.size.y);
+            }
         }
-        else {
-            ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+        if (this.renderStroke) {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = this.strokeColor;
+            if (this.shape.renderScreenSpace) {
+                ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
+            }
+            else {
+                ctx.strokeRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.size.x, this.size.y);
+            }
         }
     }
     isCollidingWithACircle(circle) {

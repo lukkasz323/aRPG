@@ -2,7 +2,6 @@ import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
 export class Level extends Entity {
-    tiles;
     constructor(levelData) {
         super();
         const splitLevelData = levelData.split(/\r\n|\r|\n/);
@@ -15,6 +14,9 @@ export class Level extends Entity {
                     this.children.push(new Rect(new Vector2(offset.x + (x * cellSize), offset.y + (y * cellSize)), new Vector2(cellSize, cellSize)));
                 }
             }
+        }
+        for (const rect of this.children) {
+            console.log(rect.size);
         }
     }
 }

@@ -19,20 +19,29 @@ export class Inventory extends Entity {
             offset.x + ((canvasSize.x / 2) - (size.x / 2)), 
             offset.y + ((canvasSize.y / 2) - (size.y / 2)));
         const alpha = 0.9;
+        const renderScreenSpace = true;
 
         const uiBackground = new Rect(
             origin, 
-            size, 
+            size,
+            undefined, 
             "gray",
+            undefined,
             alpha,
+            renderScreenSpace,
+            true,
             false,
             20);
 
         const uiBorder = new Rect(
             origin, 
-            size, 
+            size,
+            undefined, 
             "black",
+            undefined,
             alpha,
+            renderScreenSpace,
+            false,
             true,
             21);
 
@@ -43,8 +52,12 @@ export class Inventory extends Entity {
             new Vector2(
                 64,
                 64),
+            undefined,
             "black",
+            undefined,
             alpha,
+            renderScreenSpace,
+            false,
             true,
             21);
 
@@ -55,8 +68,12 @@ export class Inventory extends Entity {
             new Vector2(
                 64,
                 64),
+            undefined,
             "black",
+            undefined,
             alpha,
+            renderScreenSpace,
+            false,
             true,
             21);
 
@@ -78,8 +95,12 @@ export class Inventory extends Entity {
                     new Vector2(
                         backpackCellSize,
                         backpackCellSize),
+                        undefined,
                         "black",
+                        undefined,
                         alpha,
+                        renderScreenSpace,
+                        false,
                         true,
                         21));
             }

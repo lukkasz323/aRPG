@@ -1,23 +1,18 @@
 import { Entity } from "./Entity.js";
 import { Shape } from "./Shape.js";
 export class Circle extends Entity {
-    shape = new Shape();
-    radius;
-    constructor(origin, radius, color) {
+    shape;
+    radius = 1;
+    constructor(origin, radius, speed, color, alpha, renderScreenSpace, renderOrder) {
         super();
-        if (origin) {
-            this.shape.origin = origin;
-        }
+        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
         if (radius) {
             this.radius = radius;
         }
-        if (color) {
-            this.shape.color = color;
-        }
     }
-    _render(ctx) {
+    _render(ctx, scene) {
         ctx.beginPath();
-        ctx.arc(this.shape.origin.x, this.shape.origin.y, this.radius, 0, 2 * Math.PI);
+        ctx.arc(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.radius, 0, 2 * Math.PI);
         ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
         ctx.fill();
