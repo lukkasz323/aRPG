@@ -6,8 +6,8 @@ export class Shape extends Entity {
     speed = 1;
     color = "white";
     alpha = 1;
-    renderScreenSpace = false;
-    constructor(origin, speed, color, alpha, renderScreenSpace, renderOrder) {
+    isScreenSpace = false;
+    constructor(origin, speed, color, alpha, isScreenSpace, renderOrder) {
         super();
         if (origin) {
             this.origin = origin;
@@ -21,8 +21,8 @@ export class Shape extends Entity {
         if (alpha) {
             this.alpha = alpha;
         }
-        if (renderScreenSpace) {
-            this.renderScreenSpace = renderScreenSpace;
+        if (isScreenSpace) {
+            this.isScreenSpace = isScreenSpace;
         }
         if (renderOrder) {
             this.renderOrder = renderOrder;

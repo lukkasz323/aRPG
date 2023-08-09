@@ -8,35 +8,35 @@ export class Rect extends Entity {
     shape: Shape;
     size: Vector2 = new Vector2();
     strokeColor: string = "black";
-    renderFill: boolean = true;
-    renderStroke: boolean = true;
+    doFill: boolean = true;
+    doStroke: boolean = true;
 
-    constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, renderScreenSpace?: boolean, renderFill?: boolean, renderStroke?: boolean, renderOrder?: number) {
+    constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, renderOrder?: number) {
         super();
 
-        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
+        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
 
         if (size) { this.size = size; }
         if (strokeColor) { this.strokeColor = strokeColor; }
-        if (renderFill !== undefined) { this.renderFill = renderFill; }
-        if (renderStroke !== undefined) { this.renderStroke = renderStroke; }
+        if (doFill !== undefined) { this.doFill = doFill; }
+        if (doStroke !== undefined) { this.doStroke = doStroke; }
         if (renderOrder) { this.renderOrder = renderOrder; }
     }
 
     _render(ctx: CanvasRenderingContext2D, scene: Scene): void {
         ctx.globalAlpha = this.shape.alpha;
-        if (this.renderFill) {
+        if (this.doFill) {
             ctx.fillStyle = this.shape.color;
-            if (this.shape.renderScreenSpace) {
+            if (this.shape.isScreenSpace) {
                 ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             } else {
                 ctx.fillRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y,this.size.x, this.size.y);
             }
         }
-        if (this.renderStroke) {
+        if (this.doStroke) {
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.strokeColor;
-            if (this.shape.renderScreenSpace) {
+            if (this.shape.isScreenSpace) {
                 ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             } else {
                 ctx.strokeRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y,this.size.x, this.size.y);

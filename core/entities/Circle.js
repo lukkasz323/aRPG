@@ -3,9 +3,9 @@ import { Shape } from "./Shape.js";
 export class Circle extends Entity {
     shape;
     radius = 1;
-    constructor(origin, radius, speed, color, alpha, renderScreenSpace, renderOrder) {
+    constructor(origin, radius, speed, color, alpha, isScreenSpace, renderOrder) {
         super();
-        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
+        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
         if (radius) {
             this.radius = radius;
         }

@@ -8,10 +8,10 @@ export class ItemSlot extends Entity {
     rect: Rect;
     item: Item;
 
-    constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, renderScreenSpace?: boolean, renderFill?: boolean, renderStroke?: boolean, renderOrder?: number) {
+    constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, renderOrder?: number) {
         super();
 
-        this.rect = new Rect(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder);
+        this.rect = new Rect(origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder);
 
         this.children.push(this.rect);
     }

@@ -20,7 +20,7 @@ export class Inventory extends Entity {
             offset.x + ((canvas.width / 2) - (size.x / 2)), 
             offset.y + ((canvas.height / 2) - (size.y / 2)));
         const alpha = 0.9;
-        const renderScreenSpace = true;
+        const isScreenSpace = true;
 
         const uiBackground = new Rect(
             origin, 
@@ -29,7 +29,7 @@ export class Inventory extends Entity {
             undefined,
             undefined,
             alpha,
-            renderScreenSpace,
+            isScreenSpace,
             true,
             true,
             20);
@@ -45,7 +45,7 @@ export class Inventory extends Entity {
             undefined,
             undefined,
             alpha,
-            renderScreenSpace,
+            isScreenSpace,
             false,
             true,
             21);
@@ -61,7 +61,7 @@ export class Inventory extends Entity {
             undefined,
             undefined,
             alpha,
-            renderScreenSpace,
+            isScreenSpace,
             false,
             true,
             21);
@@ -87,7 +87,7 @@ export class Inventory extends Entity {
                     undefined,
                     undefined,
                     alpha,
-                    renderScreenSpace,
+                    isScreenSpace,
                     false,
                     true,
                     21));

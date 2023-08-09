@@ -5,22 +5,22 @@ export class Rect extends Entity {
     shape;
     size = new Vector2();
     strokeColor = "black";
-    renderFill = true;
-    renderStroke = true;
-    constructor(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder) {
+    doFill = true;
+    doStroke = true;
+    constructor(origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder) {
         super();
-        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
+        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
         if (size) {
             this.size = size;
         }
         if (strokeColor) {
             this.strokeColor = strokeColor;
         }
-        if (renderFill !== undefined) {
-            this.renderFill = renderFill;
+        if (doFill !== undefined) {
+            this.doFill = doFill;
         }
-        if (renderStroke !== undefined) {
-            this.renderStroke = renderStroke;
+        if (doStroke !== undefined) {
+            this.doStroke = doStroke;
         }
         if (renderOrder) {
             this.renderOrder = renderOrder;
@@ -28,19 +28,19 @@ export class Rect extends Entity {
     }
     _render(ctx, scene) {
         ctx.globalAlpha = this.shape.alpha;
-        if (this.renderFill) {
+        if (this.doFill) {
             ctx.fillStyle = this.shape.color;
-            if (this.shape.renderScreenSpace) {
+            if (this.shape.isScreenSpace) {
                 ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             }
             else {
                 ctx.fillRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.size.x, this.size.y);
             }
         }
-        if (this.renderStroke) {
+        if (this.doStroke) {
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.strokeColor;
-            if (this.shape.renderScreenSpace) {
+            if (this.shape.isScreenSpace) {
                 ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             }
             else {

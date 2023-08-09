@@ -3,9 +3,9 @@ import { Rect } from "./Rect.js";
 export class ItemSlot extends Entity {
     rect;
     item;
-    constructor(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder) {
+    constructor(origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder) {
         super();
-        this.rect = new Rect(origin, size, speed, color, strokeColor, alpha, renderScreenSpace, renderFill, renderStroke, renderOrder);
+        this.rect = new Rect(origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder);
         this.children.push(this.rect);
     }
     _update(scene) {

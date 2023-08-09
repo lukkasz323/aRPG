@@ -8,10 +8,10 @@ export class Circle extends Entity {
     shape: Shape;
     radius: number = 1;
 
-    constructor(origin?: Vector2, radius?: number, speed?: number, color?: string, alpha?: number, renderScreenSpace?: boolean, renderOrder?: number) {
+    constructor(origin?: Vector2, radius?: number, speed?: number, color?: string, alpha?: number, isScreenSpace?: boolean, renderOrder?: number) {
         super();
 
-        this.shape = new Shape(origin, speed, color, alpha, renderScreenSpace, renderOrder);
+        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
 
         if (radius) { this.radius = radius; }
     }
