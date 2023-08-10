@@ -40,7 +40,7 @@ export class Scene {
             const renderQueue = [];
             for (const entity of this.entities) {
                 if (entity.isEnabled) {
-                    entity.addToRenderQueue(renderQueue);
+                    entity._addToRenderQueue(renderQueue);
                 }
             }
             for (const entity of renderQueue.sort((a, b) => a.renderOrder - b.renderOrder)) {

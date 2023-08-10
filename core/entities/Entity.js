@@ -14,10 +14,10 @@ export class Entity {
         }
     }
     _render(ctx) { }
-    addToRenderQueue(renderQueue) {
+    _addToRenderQueue(renderQueue) {
         for (const child of this.children) {
             if (child.isEnabled) {
-                child.addToRenderQueue(renderQueue);
+                child._addToRenderQueue(renderQueue);
             }
         }
         renderQueue.push(this);

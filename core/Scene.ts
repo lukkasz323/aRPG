@@ -51,7 +51,7 @@ export class Scene {
 
             for (const entity of this.entities) {
                 if (entity.isEnabled) {
-                    entity.addToRenderQueue(renderQueue);
+                    entity._addToRenderQueue(renderQueue);
                 }
             }
     

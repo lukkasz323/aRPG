@@ -20,10 +20,10 @@ export class Entity {
 
     _render(ctx: CanvasRenderingContext2D): void {}
 
-    addToRenderQueue(renderQueue: Entity[]): void {
+    _addToRenderQueue(renderQueue: Entity[]): void {
         for (const child of this.children) {
             if (child.isEnabled) {
-                child.addToRenderQueue(renderQueue);
+                child._addToRenderQueue(renderQueue);
             }
         }
 
