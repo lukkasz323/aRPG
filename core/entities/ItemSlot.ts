@@ -3,6 +3,7 @@ import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
 import { Scene } from "../Scene.js";
 import { Item } from "./items/Item.js";
+import { Shape } from "./Shape.js";
 
 export class ItemSlot extends Entity {
     rect: Rect;
@@ -19,7 +20,10 @@ export class ItemSlot extends Entity {
     }
 
     onMouseDown(event: PointerEvent): void {
-        console.log(this);
+        if (this.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
+            this.rect.shape.color = "red";
+            this.rect.doFill = true;
+        }
     }
 
     _render(ctx: CanvasRenderingContext2D) {

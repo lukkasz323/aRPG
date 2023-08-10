@@ -7,13 +7,14 @@ export class Scene {
     entities = [];
     dataByName;
     canvas;
-    input = new InputState();
+    input;
     camera;
     level;
     player;
     constructor(dataByName, canvas) {
         this.dataByName = dataByName;
         this.canvas = canvas;
+        this.input = new InputState(this);
         this.level = new Level(this, dataByName["level"]);
         this.player = new Player(this, new Vector2(100, 100), canvas);
         this.camera = new Camera(this, canvas);

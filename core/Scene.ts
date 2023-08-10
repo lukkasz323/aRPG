@@ -10,7 +10,7 @@ export class Scene {
     entities: Entity[] = [];
     dataByName: Map<string, string>;
     canvas: HTMLCanvasElement;
-    input: InputState = new InputState();
+    input: InputState;
     camera: Camera;
     level: Level;
     player: Player;
@@ -18,10 +18,12 @@ export class Scene {
     constructor(dataByName: Map<string, string>, canvas: HTMLCanvasElement) {
         this.dataByName = dataByName;
         this.canvas = canvas;
+        this.input = new InputState(this);
+
         this.level = new Level(this, dataByName["level"]);
         this.player = new Player(this, new Vector2(100, 100), canvas);
         this.camera = new Camera(this, canvas);
-
+        
         this.entities.push(this.level);
         this.entities.push(this.player);
         this.entities.push(this.camera);

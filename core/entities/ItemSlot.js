@@ -10,7 +10,10 @@ export class ItemSlot extends Entity {
         scene.canvas.addEventListener("mousedown", (event) => this.onMouseDown(event));
     }
     onMouseDown(event) {
-        console.log(this);
+        if (this.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
+            this.rect.shape.color = "red";
+            this.rect.doFill = true;
+        }
     }
     _render(ctx) {
         this.rect._render(ctx);

@@ -44,7 +44,17 @@ export class Rect extends Entity {
         }
     }
 
-    isCollidingWithACircle(circle: Circle): boolean {
+    isCollidingWithPoint(point: Vector2): boolean {
+        const rectRight = this.shape.origin.x + this.size.x;
+        const rectBottom = this.shape.origin.y + this.size.y;
+        
+        return (
+            point.x >= this.shape.origin.x && point.x <= rectRight &&
+            point.y >= this.shape.origin.y && point.y <= rectBottom
+        );
+    }
+
+    isCollidingWithCircle(circle: Circle): boolean {
         const distX = Math.abs(circle.shape.origin.x - this.shape.origin.x - this.size.x / 2);
         const distY = Math.abs(circle.shape.origin.y - this.shape.origin.y - this.size.y / 2);
     

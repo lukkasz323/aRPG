@@ -1,9 +1,7 @@
-import { EventManager } from "./EventManager.js";
 import { Scene } from "./Scene.js";
 export class Game {
     dataByName;
     scene;
-    eventManager = new EventManager();
     canvas;
     constructor(canvas) {
         this.canvas = canvas;
@@ -32,7 +30,6 @@ export class Game {
         }
         const fps = 60;
         setInterval(() => gameLoop(this.scene, this.canvas), 1000 / fps);
-        this.eventManager.addEvents(this.canvas, this.scene);
         function gameLoop(scene, canvas) {
             scene.update();
             scene.render(canvas);

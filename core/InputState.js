@@ -1,4 +1,9 @@
 import { MouseState } from "./MouseState.js";
 export class InputState {
-    mouse = new MouseState();
+    scene;
+    mouse;
+    constructor(scene) {
+        this.scene = scene;
+        this.mouse = new MouseState(scene);
+    }
 }

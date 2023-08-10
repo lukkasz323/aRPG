@@ -16,7 +16,9 @@ export class Player extends Entity {
         this.character = new Character(scene);
         this.children.push(this.inventory);
         this.children.push(this.circle);
-        scene.canvas.addEventListener("mousedown", (event) => this.onMouseDown(event));
+        scene.canvas.addEventListener("mousedown", (event) => this.#onMouseDown(event));
+        document.addEventListener("keydown", (event) => this.#onKeyDown(event));
+        document.addEventListener("keyup", (event) => this.#onKeyUp(event));
     }
     _update() {
         super._update();
@@ -29,8 +31,11 @@ export class Player extends Entity {
             }
         }
     }
-    onMouseDown(event) {
-        this.startMovement();
+    startMovement() {
+        const direction = this.#getVectorToMousePosition();
+        direction.normalize();
+        this.scene.player.circle.shape.acceleration = new Vector2(direction.x * this.scene.player.circle.shape.speed, direction.y * this.scene.player.circle.shape.speed);
+        this.movementTarget = this.#getVectorToMousePosition();
     }
     #move() {
         this.lastPosition = new Vector2(this.circle.shape.origin.x, this.circle.shape.origin.y);
@@ -55,13 +60,20 @@ export class Player extends Entity {
         this.movementTarget.x += this.circle.shape.acceleration.x * 0.01;
         this.movementTarget.y += this.circle.shape.acceleration.y * 0.01;
     }
-    startMovement() {
-        const direction = this.#getVectorToMousePosition();
-        direction.normalize();
-        this.scene.player.circle.shape.acceleration = new Vector2(direction.x * this.scene.player.circle.shape.speed, direction.y * this.scene.player.circle.shape.speed);
-        this.movementTarget = this.#getVectorToMousePosition();
-    }
     #getVectorToMousePosition() {
         return new Vector2(this.scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, this.scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
+    }
+    #onMouseDown(event) {
+        this.startMovement();
+    }
+    #onKeyDown(event) {
+        if (event.code === "ShiftLeft") {
+            this.inventory.open();
+        }
+    }
+    #onKeyUp(event) {
+        if (event.code === "ShiftLeft") {
+            this.inventory.close();
+        }
     }
 }
