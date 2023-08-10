@@ -3,6 +3,7 @@ import { Entity } from "./Entity.js";
 import { Item } from "./items/Item.js";
 import { ItemSlot } from "./ItemSlot.js";
 import { Rect } from "./Rect.js";
+import { Scene } from "../Scene.js";
 
 export class Inventory extends Entity {
     backpack: Item[] = [];
@@ -11,8 +12,8 @@ export class Inventory extends Entity {
     head: Item;
     chest: Item;
 
-    constructor(canvas: HTMLCanvasElement) {
-        super();
+    constructor(scene: Scene, canvas: HTMLCanvasElement) {
+        super(scene);
 
         const size = new Vector2(272, 512);
         const offset = new Vector2(176, 0);
@@ -22,7 +23,7 @@ export class Inventory extends Entity {
         const alpha = 0.9;
         const isScreenSpace = true;
 
-        const uiBackground = new Rect(
+        const uiBackground = new Rect(scene, 
             origin, 
             size,
             undefined, 
@@ -34,7 +35,7 @@ export class Inventory extends Entity {
             true,
             20);
 
-        const uiRightHand = new Rect(
+        const uiRightHand = new Rect(scene, 
             new Vector2(
                 16 + origin.x,
                 32 + origin.y),
@@ -50,7 +51,7 @@ export class Inventory extends Entity {
             true,
             21);
 
-        const uiLeftHandBorder = new Rect(
+        const uiLeftHandBorder = new Rect(scene, 
             new Vector2(
                 -80 + size.x + origin.x,
                 32 + origin.y),
@@ -77,6 +78,7 @@ export class Inventory extends Entity {
         for (let y = 0; y < this.backpackSize.y; y++) {
             for (let x = 0; x < this.backpackSize.x; x++) {
                 this.children.push(new ItemSlot(
+                    scene,
                     new Vector2(
                         backpackOrigin.x + (x * backpackCellSize),
                         backpackOrigin.y + (y * backpackCellSize)),

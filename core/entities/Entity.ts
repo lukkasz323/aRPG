@@ -1,17 +1,24 @@
+import { Scene } from "../Scene";
+
 export class Entity {
+    scene: Scene;
     children: Entity[] = [];
     renderOrder: number = 0;
     isEnabled: boolean = true;
     
-    _update(arg1?: any): void {
+    constructor(scene: Scene) {
+        this.scene = scene;
+    }
+
+    _update(): void {
         for (const child of this.children) {
             if (child.isEnabled) {
-                child._update(arg1);
+                child._update();
             }
         }
     }
 
-    _render(arg1?: any, arg2?: any): void {}
+    _render(ctx: CanvasRenderingContext2D): void {}
 
     addToRenderQueue(renderQueue: Entity[]): void {
         for (const child of this.children) {

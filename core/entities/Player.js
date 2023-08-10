@@ -7,25 +7,30 @@ export class Player extends Entity {
     circle;
     lastPosition = new Vector2();
     movementTarget = new Vector2();
-    character = new Character();
+    character;
     inventory;
-    constructor(origin, canvas) {
-        super();
-        this.circle = new Circle(origin, 16, 4, "blue", undefined, undefined, 10);
-        this.inventory = new Inventory(canvas);
+    constructor(scene, origin, canvas) {
+        super(scene);
+        this.circle = new Circle(scene, origin, 16, 4, "blue", undefined, undefined, 10);
+        this.inventory = new Inventory(scene, canvas);
+        this.character = new Character(scene);
         this.children.push(this.inventory);
         this.children.push(this.circle);
+        scene.canvas.addEventListener("mousedown", (event) => this.onMouseDown(event));
     }
-    _update(scene) {
+    _update() {
         super._update();
         this.#move();
-        for (const child of scene.level.children) {
+        for (const child of this.scene.level.children) {
             const rect = child;
             if (this.circle.isCollidingWithARect(rect)) {
                 this.circle.shape.acceleration = new Vector2();
                 this.circle.shape.origin = new Vector2(this.lastPosition.x, this.lastPosition.y);
             }
         }
+    }
+    onMouseDown(event) {
+        this.startMovement();
     }
     #move() {
         this.lastPosition = new Vector2(this.circle.shape.origin.x, this.circle.shape.origin.y);
@@ -50,13 +55,13 @@ export class Player extends Entity {
         this.movementTarget.x += this.circle.shape.acceleration.x * 0.01;
         this.movementTarget.y += this.circle.shape.acceleration.y * 0.01;
     }
-    startMovement(scene) {
-        const direction = this.#getVectorToMousePosition(scene);
+    startMovement() {
+        const direction = this.#getVectorToMousePosition();
         direction.normalize();
-        scene.player.circle.shape.acceleration = new Vector2(direction.x * scene.player.circle.shape.speed, direction.y * scene.player.circle.shape.speed);
-        this.movementTarget = this.#getVectorToMousePosition(scene);
+        this.scene.player.circle.shape.acceleration = new Vector2(direction.x * this.scene.player.circle.shape.speed, direction.y * this.scene.player.circle.shape.speed);
+        this.movementTarget = this.#getVectorToMousePosition();
     }
-    #getVectorToMousePosition(scene) {
-        return new Vector2(scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
+    #getVectorToMousePosition() {
+        return new Vector2(this.scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, this.scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
     }
 }

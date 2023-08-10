@@ -4,10 +4,10 @@ import { Entity } from "./Entity.js";
 export class Label extends Entity {
     shape;
     text;
-    constructor(origin, value, size) {
-        super();
-        this.shape = new Shape(origin);
-        this.text = new Text(value, size);
+    constructor(scene, origin, value, size) {
+        super(scene);
+        this.shape = new Shape(scene, origin);
+        this.text = new Text(scene, value, size);
     }
     _render(ctx) {
         ctx.globalAlpha = this.shape.alpha;

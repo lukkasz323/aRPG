@@ -1,17 +1,21 @@
 import { Circle } from "../Circle.js";
 import { Entity } from "../Entity.js";
 import { Rect } from "../Rect.js";
+import { Scene } from "../../Scene.js";
 
 export class Item extends Entity {
-    uiIcon: Rect = new Rect();
-    circle: Circle = new Circle();
+    uiIcon: Rect;
+    circle: Circle;
 
-    constructor() {
-        super();
+    constructor(scene: Scene) {
+        super(scene);
+
+        this.uiIcon = new Rect(scene);
+        this.circle = new Circle(scene);
     }
 
-    static generate(): Item {
-        const item = new Item();
+    static generate(scene: Scene): Item {
+        const item = new Item(scene);
 
         const rng = Math.random();
         // if (rng <= 0.001) {

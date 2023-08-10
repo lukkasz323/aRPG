@@ -3,16 +3,16 @@ import { Shape } from "./Shape.js";
 export class Circle extends Entity {
     shape;
     radius = 1;
-    constructor(origin, radius, speed, color, alpha, isScreenSpace, renderOrder) {
-        super();
-        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
+    constructor(scene, origin, radius, speed, color, alpha, isScreenSpace, renderOrder) {
+        super(scene);
+        this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
         if (radius) {
             this.radius = radius;
         }
     }
-    _render(ctx, scene) {
+    _render(ctx) {
         ctx.beginPath();
-        ctx.arc(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.radius, 0, 2 * Math.PI);
+        ctx.arc(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y, this.radius, 0, 2 * Math.PI);
         ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
         ctx.fill();

@@ -1,7 +1,7 @@
 import { Entity } from "./Entity.js";
 import { Vector2 } from "../utils/Vector2.js";
 import { Circle } from "./Circle.js";
-import { Scene } from "./Scene.js";
+import { Scene } from "../Scene.js";
 import { Rect } from "./Rect.js";
 import { Character } from "./Character.js";
 import { Inventory } from "./Inventory.js";
@@ -10,24 +10,27 @@ export class Player extends Entity {
     circle: Circle;
     lastPosition: Vector2 = new Vector2();
     movementTarget: Vector2 = new Vector2();
-    character: Character = new Character();
+    character: Character;
     inventory: Inventory;
 
-    constructor(origin: Vector2, canvas: HTMLCanvasElement) {
-        super();
+    constructor(scene: Scene, origin: Vector2, canvas: HTMLCanvasElement) {
+        super(scene);
 
-        this.circle = new Circle(origin, 16, 4, "blue", undefined, undefined, 10);
-        this.inventory = new Inventory(canvas);
+        this.circle = new Circle(scene, origin, 16, 4, "blue", undefined, undefined, 10);
+        this.inventory = new Inventory(scene, canvas);
+        this.character = new Character(scene);
 
         this.children.push(this.inventory);
         this.children.push(this.circle);
+
+        scene.canvas.addEventListener("mousedown", (event: PointerEvent) => this.onMouseDown(event));
     }
 
-    _update(scene: Scene): void {
+    _update(): void {
         super._update();
 
         this.#move();
-        for (const child of scene.level.children) {
+        for (const child of this.scene.level.children) {
             const rect = <Rect>child;
             
             if (this.circle.isCollidingWithARect(rect)) {
@@ -35,6 +38,10 @@ export class Player extends Entity {
                 this.circle.shape.origin = new Vector2(this.lastPosition.x, this.lastPosition.y);
             }
         }
+    }
+
+    onMouseDown(event: PointerEvent): void {
+        this.startMovement();
     }
 
     #move(): void {
@@ -65,21 +72,21 @@ export class Player extends Entity {
         this.movementTarget.y += this.circle.shape.acceleration.y * 0.01;
     }
 
-    startMovement(scene: Scene) {
-        const direction = this.#getVectorToMousePosition(scene);
+    startMovement() {
+        const direction = this.#getVectorToMousePosition();
         direction.normalize();
 
-        scene.player.circle.shape.acceleration = new Vector2(
-            direction.x * scene.player.circle.shape.speed, 
-            direction.y * scene.player.circle.shape.speed
+        this.scene.player.circle.shape.acceleration = new Vector2(
+            direction.x * this.scene.player.circle.shape.speed, 
+            direction.y * this.scene.player.circle.shape.speed
         );
 
-        this.movementTarget = this.#getVectorToMousePosition(scene);
+        this.movementTarget = this.#getVectorToMousePosition();
     }
 
-    #getVectorToMousePosition(scene: Scene): Vector2 {
+    #getVectorToMousePosition(): Vector2 {
         return new Vector2(
-            scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, 
-            scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
+            this.scene.input.mouse.worldOrigin.x - this.circle.shape.origin.x, 
+            this.scene.input.mouse.worldOrigin.y - this.circle.shape.origin.y);
     }
 }

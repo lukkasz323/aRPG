@@ -7,8 +7,8 @@ export class Shape extends Entity {
     color = "white";
     alpha = 1;
     isScreenSpace = false;
-    constructor(origin, speed, color, alpha, isScreenSpace, renderOrder) {
-        super();
+    constructor(scene, origin, speed, color, alpha, isScreenSpace, renderOrder) {
+        super(scene);
         if (origin) {
             this.origin = origin;
         }

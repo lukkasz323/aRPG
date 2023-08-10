@@ -10,9 +10,9 @@ export class Vector2 {
     normalize(): void {
         const magnitude = Math.sqrt(this.x * this.x + this.y * this.y);
     
-        if (magnitude === 0) {
-            this.x = 0; // Avoid division by zero
-            this.y = 0;
+        if (magnitude === 0) { // Avoid division by zero
+            this.x = 0; //
+            this.y = 0; //
         } else {
             this.x = this.x / magnitude;
             this.y = this.y / magnitude;

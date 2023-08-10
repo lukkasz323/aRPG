@@ -1,5 +1,5 @@
 import { EventManager } from "./EventManager.js";
-import { Scene } from "./entities/Scene.js";
+import { Scene } from "./Scene.js";
 
 export class Game {
     dataByName: Map<string, string>;
@@ -48,8 +48,8 @@ export class Game {
         this.eventManager.addEvents(this.canvas, this.scene);
         
         function gameLoop(scene: Scene, canvas: HTMLCanvasElement): void {
-            scene._update(scene);
-            scene._render(canvas, scene);
+            scene.update();
+            scene.render(canvas);
         }
     }
 }

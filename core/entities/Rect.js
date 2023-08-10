@@ -7,9 +7,9 @@ export class Rect extends Entity {
     strokeColor = "black";
     doFill = true;
     doStroke = true;
-    constructor(origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder) {
-        super();
-        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
+    constructor(scene, origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder) {
+        super(scene);
+        this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
         if (size) {
             this.size = size;
         }
@@ -26,7 +26,7 @@ export class Rect extends Entity {
             this.renderOrder = renderOrder;
         }
     }
-    _render(ctx, scene) {
+    _render(ctx) {
         ctx.globalAlpha = this.shape.alpha;
         if (this.doFill) {
             ctx.fillStyle = this.shape.color;
@@ -34,7 +34,7 @@ export class Rect extends Entity {
                 ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             }
             else {
-                ctx.fillRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.size.x, this.size.y);
+                ctx.fillRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y, this.size.x, this.size.y);
             }
         }
         if (this.doStroke) {
@@ -44,7 +44,7 @@ export class Rect extends Entity {
                 ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             }
             else {
-                ctx.strokeRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.size.x, this.size.y);
+                ctx.strokeRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y, this.size.x, this.size.y);
             }
         }
     }

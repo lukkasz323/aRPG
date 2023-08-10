@@ -1,10 +1,11 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
+import { Scene } from "../Scene.js";
 
 export class Level extends Entity {
-    constructor(levelData: string) {
-        super();
+    constructor(scene: Scene, levelData: string) {
+        super(scene);
 
         const splitLevelData = levelData.split(/\r\n|\r|\n/);
         const offset = new Vector2(0, 0);
@@ -14,7 +15,7 @@ export class Level extends Entity {
                 const char: string = splitLevelData[y][x];
                 if (char !== "0") {
                     this.children.push(
-                        new Rect(
+                        new Rect(scene, 
                             new Vector2(offset.x + (x * cellSize), offset.y + (y * cellSize)),
                             new Vector2(cellSize, cellSize)
                             ));

@@ -1,24 +1,24 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
-import { Scene } from "./Scene.js";
+import { Scene } from "../Scene.js";
 import { Shape } from "./Shape.js";
 
 export class Circle extends Entity {
     shape: Shape;
     radius: number = 1;
 
-    constructor(origin?: Vector2, radius?: number, speed?: number, color?: string, alpha?: number, isScreenSpace?: boolean, renderOrder?: number) {
-        super();
+    constructor(scene: Scene, origin?: Vector2, radius?: number, speed?: number, color?: string, alpha?: number, isScreenSpace?: boolean, renderOrder?: number) {
+        super(scene);
 
-        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
+        this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
 
         if (radius) { this.radius = radius; }
     }
 
-    _render(ctx: CanvasRenderingContext2D, scene: Scene): void {
+    _render(ctx: CanvasRenderingContext2D): void {
         ctx.beginPath();
-        ctx.arc(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y, this.radius, 0, 2 * Math.PI)
+        ctx.arc(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y, this.radius, 0, 2 * Math.PI)
         ctx.globalAlpha = this.shape.alpha;
         ctx.fillStyle = this.shape.color;
         ctx.fill();

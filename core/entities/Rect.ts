@@ -1,7 +1,7 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Circle } from "./Circle.js";
 import { Entity } from "./Entity.js";
-import { Scene } from "./Scene.js";
+import { Scene } from "../Scene.js";
 import { Shape } from "./Shape.js";
 
 export class Rect extends Entity {
@@ -11,10 +11,10 @@ export class Rect extends Entity {
     doFill: boolean = true;
     doStroke: boolean = true;
 
-    constructor(origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, renderOrder?: number) {
-        super();
+    constructor(scene: Scene, origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, renderOrder?: number) {
+        super(scene);
 
-        this.shape = new Shape(origin, speed, color, alpha, isScreenSpace, renderOrder);
+        this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
 
         if (size) { this.size = size; }
         if (strokeColor) { this.strokeColor = strokeColor; }
@@ -23,14 +23,14 @@ export class Rect extends Entity {
         if (renderOrder) { this.renderOrder = renderOrder; }
     }
 
-    _render(ctx: CanvasRenderingContext2D, scene: Scene): void {
+    _render(ctx: CanvasRenderingContext2D): void {
         ctx.globalAlpha = this.shape.alpha;
         if (this.doFill) {
             ctx.fillStyle = this.shape.color;
             if (this.shape.isScreenSpace) {
                 ctx.fillRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             } else {
-                ctx.fillRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y,this.size.x, this.size.y);
+                ctx.fillRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y,this.size.x, this.size.y);
             }
         }
         if (this.doStroke) {
@@ -39,7 +39,7 @@ export class Rect extends Entity {
             if (this.shape.isScreenSpace) {
                 ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             } else {
-                ctx.strokeRect(this.shape.origin.x - scene.camera.origin.x, this.shape.origin.y - scene.camera.origin.y,this.size.x, this.size.y);
+                ctx.strokeRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y,this.size.x, this.size.y);
             }
         }
     }

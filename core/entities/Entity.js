@@ -1,15 +1,19 @@
 export class Entity {
+    scene;
     children = [];
     renderOrder = 0;
     isEnabled = true;
-    _update(arg1) {
+    constructor(scene) {
+        this.scene = scene;
+    }
+    _update() {
         for (const child of this.children) {
             if (child.isEnabled) {
-                child._update(arg1);
+                child._update();
             }
         }
     }
-    _render(arg1, arg2) { }
+    _render(ctx) { }
     addToRenderQueue(renderQueue) {
         for (const child of this.children) {
             if (child.isEnabled) {

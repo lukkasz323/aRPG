@@ -1,5 +1,6 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
+import { Scene } from "../Scene.js";
 
 export class Shape extends Entity {
     origin: Vector2 = new Vector2();
@@ -9,8 +10,8 @@ export class Shape extends Entity {
     alpha: number = 1;
     isScreenSpace: boolean = false;
 
-    constructor(origin?: Vector2, speed?: number, color?: string, alpha?: number, isScreenSpace?: boolean, renderOrder?: number) {
-        super();
+    constructor(scene: Scene, origin?: Vector2, speed?: number, color?: string, alpha?: number, isScreenSpace?: boolean, renderOrder?: number) {
+        super(scene);
 
         if (origin) { this.origin = origin; }
         if (speed) { this.speed = speed; }

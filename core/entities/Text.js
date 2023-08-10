@@ -3,8 +3,8 @@ export class Text extends Entity {
     value = "Text";
     size = 16;
     font = "Arial";
-    constructor(value, size) {
-        super();
+    constructor(scene, value, size) {
+        super(scene);
         if (value) {
             this.value = value;
         }
