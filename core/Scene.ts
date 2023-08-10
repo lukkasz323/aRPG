@@ -2,7 +2,6 @@ import { Vector2 } from "./utils/Vector2.js";
 import { Entity } from "./entities/Entity.js";
 import { InputState } from "./InputState.js";
 import { Player } from "./entities/Player.js";
-import { Label } from "./entities/Label.js";
 import { Level } from "./entities/Level.js";
 import { Camera } from "./entities/Camera.js";
 
@@ -23,7 +22,7 @@ export class Scene {
         this.level = new Level(this, dataByName["level"]);
         this.player = new Player(this, new Vector2(100, 100), canvas);
         this.camera = new Camera(this, canvas);
-        
+
         this.entities.push(this.level);
         this.entities.push(this.player);
         this.entities.push(this.camera);

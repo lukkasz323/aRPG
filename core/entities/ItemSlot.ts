@@ -3,7 +3,6 @@ import { Entity } from "./Entity.js";
 import { Rect } from "./Rect.js";
 import { Scene } from "../Scene.js";
 import { Item } from "./items/Item.js";
-import { Shape } from "./Shape.js";
 
 export class ItemSlot extends Entity {
     rect: Rect;
