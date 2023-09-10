@@ -12,7 +12,7 @@ export class Game {
             "test",
         ];
         const fetchPromises = fileNames
-            .map((fileName) => fetch(`./data/${fileName}.txt`)
+            .map((fileName) => fetch(`../data/${fileName}.txt`)
             .then(response => response.text()));
         const data = await Promise.all(fetchPromises);
         const dataByName = new Map();

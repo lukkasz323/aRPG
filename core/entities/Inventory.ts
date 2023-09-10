@@ -6,11 +6,9 @@ import { Rect } from "./Rect.js";
 import { Scene } from "../Scene.js";
 
 export class Inventory extends Entity {
-    backpack: Item[] = [];
+    backpack: ItemSlot[] = [];
     backpackSize: Vector2 = new Vector2(8, 4);
-    rightHand: Item;
-    head: Item;
-    chest: Item;
+    draggedItem: Item = null;
 
     constructor(scene: Scene, canvas: HTMLCanvasElement) {
         super(scene);
@@ -33,6 +31,7 @@ export class Inventory extends Entity {
             isScreenSpace,
             true,
             true,
+            undefined,
             20);
 
         const uiRightHand = new Rect(scene, 
@@ -49,9 +48,10 @@ export class Inventory extends Entity {
             isScreenSpace,
             false,
             true,
+            undefined,
             21);
 
-        const uiLeftHandBorder = new Rect(scene, 
+        const uiLeftHand = new Rect(scene, 
             new Vector2(
                 -80 + size.x + origin.x,
                 32 + origin.y),
@@ -65,11 +65,8 @@ export class Inventory extends Entity {
             isScreenSpace,
             false,
             true,
+            undefined,
             21);
-
-        this.children.push(uiBackground);
-        this.children.push(uiRightHand);
-        this.children.push(uiLeftHandBorder);
         
         const backpackCellSize = 32;
         const backpackOrigin = new Vector2(
@@ -77,7 +74,7 @@ export class Inventory extends Entity {
             origin.y + (size.y - 8) - (this.backpackSize.y * backpackCellSize));
         for (let y = 0; y < this.backpackSize.y; y++) {
             for (let x = 0; x < this.backpackSize.x; x++) {
-                this.children.push(new ItemSlot(
+                this.backpack.push(new ItemSlot(
                     scene,
                     new Vector2(
                         backpackOrigin.x + (x * backpackCellSize),
@@ -89,14 +86,32 @@ export class Inventory extends Entity {
                     undefined,
                     undefined,
                     alpha,
-                    isScreenSpace,
+                    true,
                     false,
                     true,
                     21));
             }
         }
 
+        this.children.push(uiBackground);
+        this.children.push(uiRightHand);
+        this.children.push(uiLeftHand);
+        for (const itemSlot of this.backpack) {
+            this.children.push(itemSlot);
+        }
+
         this.close();
+
+        scene.canvas.addEventListener("mousedown", (event: PointerEvent) => this.#onMouseDown(event));
+    }
+
+    #onMouseDown(event: PointerEvent): void {
+        for (const itemSlot of this.backpack) {
+            if (itemSlot.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
+                itemSlot.item_ = new Item(this.scene, itemSlot.rect.shape.origin, itemSlot.rect.size, "wood");
+                console.log(itemSlot);
+            }
+        }
     }
 
     open(): void {

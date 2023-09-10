@@ -7,7 +7,8 @@ export class Rect extends Entity {
     strokeColor = "black";
     doFill = true;
     doStroke = true;
-    constructor(scene, origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, renderOrder) {
+    texture = null;
+    constructor(scene, origin, size, speed, color, strokeColor, alpha, isScreenSpace, doFill, doStroke, textureName, renderOrder) {
         super(scene);
         this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
         if (size) {
@@ -24,6 +25,10 @@ export class Rect extends Entity {
         }
         if (renderOrder) {
             this.renderOrder = renderOrder;
+        }
+        this.texture = new Image();
+        if (textureName) {
+            this.texture.src = `../data/textures/${textureName}.png`;
         }
     }
     _render(ctx) {
@@ -45,6 +50,14 @@ export class Rect extends Entity {
             }
             else {
                 ctx.strokeRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y, this.size.x, this.size.y);
+            }
+        }
+        if (this.texture) {
+            if (this.shape.isScreenSpace) {
+                ctx.drawImage(this.texture, this.shape.origin.x, this.shape.origin.y);
+            }
+            else {
+                ctx.drawImage(this.texture, this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y);
             }
         }
     }

@@ -17,7 +17,7 @@ export class Game {
 
         const fetchPromises: Promise<string>[] = fileNames
             .map((fileName) => 
-                fetch(`./data/${fileName}.txt`)
+                fetch(`../data/${fileName}.txt`)
                     .then(response => response.text())
         );
 

@@ -10,8 +10,9 @@ export class Rect extends Entity {
     strokeColor: string = "black";
     doFill: boolean = true;
     doStroke: boolean = true;
+    texture: HTMLImageElement = null;
 
-    constructor(scene: Scene, origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, renderOrder?: number) {
+    constructor(scene: Scene, origin?: Vector2, size?: Vector2, speed?: number, color?: string, strokeColor?: string, alpha?: number, isScreenSpace?: boolean, doFill?: boolean, doStroke?: boolean, textureName?: string, renderOrder?: number) {
         super(scene);
 
         this.shape = new Shape(scene, origin, speed, color, alpha, isScreenSpace, renderOrder);
@@ -21,6 +22,11 @@ export class Rect extends Entity {
         if (doFill !== undefined) { this.doFill = doFill; }
         if (doStroke !== undefined) { this.doStroke = doStroke; }
         if (renderOrder) { this.renderOrder = renderOrder; }
+
+        this.texture = new Image();
+        if (textureName) {
+            this.texture.src = `../data/textures/${textureName}.png`;
+        }
     }
 
     _render(ctx: CanvasRenderingContext2D): void {
@@ -40,6 +46,14 @@ export class Rect extends Entity {
                 ctx.strokeRect(this.shape.origin.x, this.shape.origin.y, this.size.x, this.size.y);
             } else {
                 ctx.strokeRect(this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y,this.size.x, this.size.y);
+            }
+        }
+        if (this.texture) {
+            if (this.shape.isScreenSpace) {
+                ctx.drawImage(this.texture, this.shape.origin.x, this.shape.origin.y);
+            }
+            else {
+                ctx.drawImage(this.texture, this.shape.origin.x - this.scene.camera.origin.x, this.shape.origin.y - this.scene.camera.origin.y);
             }
         }
     }

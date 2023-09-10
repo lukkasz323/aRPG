@@ -48,12 +48,10 @@ export class Scene {
                 entity._render(ctx);
             }
         }
-        // // Debug crosshair
+        // // Debug
         // {
         //     ctx.globalAlpha = 1;
         //     ctx.lineWidth = 2;
-        //     ctx.strokeStyle = "cyan";
-        //     ctx.strokeRect(0, 0, canvas.width / 2, canvas.height / 2)
         // }
     }
 }

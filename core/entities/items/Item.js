@@ -1,13 +1,14 @@
-import { Circle } from "../Circle.js";
 import { Entity } from "../Entity.js";
 import { Rect } from "../Rect.js";
 export class Item extends Entity {
     uiIcon;
-    circle;
-    constructor(scene) {
+    collision;
+    constructor(scene, origin, size, textureName) {
         super(scene);
-        this.uiIcon = new Rect(scene);
-        this.circle = new Circle(scene);
+        this.uiIcon = new Rect(scene, origin, size, undefined, undefined, undefined, undefined, true, false, false, textureName, 30);
+        // this.collision = new Circle(scene);
+        this.children.push(this.uiIcon);
+        // this.children.push(this.collision);
     }
     static generate(scene) {
         const item = new Item(scene);
