@@ -4,6 +4,7 @@ import { Item } from "./items/Item.js";
 import { ItemSlot } from "./ItemSlot.js";
 import { Rect } from "./Rect.js";
 import { Scene } from "../Scene.js";
+import { Wood } from "./items/Wood.js";
 
 export class Inventory extends Entity {
     backpack: ItemSlot[] = [];
@@ -108,7 +109,7 @@ export class Inventory extends Entity {
     #onMouseDown(event: PointerEvent): void {
         for (const itemSlot of this.backpack) {
             if (itemSlot.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
-                itemSlot.item_ = new Item(this.scene, itemSlot.rect.shape.origin, itemSlot.rect.size, "wood");
+                itemSlot.item = new Wood(this.scene, itemSlot.rect.shape.origin);
                 console.log(itemSlot);
             }
         }

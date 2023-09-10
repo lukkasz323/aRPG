@@ -4,14 +4,16 @@ import { Rect } from "../Rect.js";
 import { Scene } from "../../Scene.js";
 import { Vector2 } from "../../utils/Vector2.js";
 
-export class Item extends Entity {
+export class Item extends Entity{
+    static iconSize: Vector2;
+
     uiIcon: Rect;
     collision: Circle;
 
-    constructor(scene: Scene, origin?: Vector2, size?: Vector2, textureName?: string) {
+    constructor(scene: Scene, iconOrigin?: Vector2, textureName?: string) {
         super(scene);
 
-        this.uiIcon = new Rect(scene, origin, size, undefined, undefined, undefined, undefined, true, false, false, textureName, 30);
+        this.uiIcon = new Rect(scene, iconOrigin, Item.iconSize, undefined, undefined, undefined, undefined, true, false, false, textureName, 30);
         // this.collision = new Circle(scene);
 
         this.children.push(this.uiIcon);

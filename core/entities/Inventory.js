@@ -1,8 +1,8 @@
 import { Vector2 } from "../utils/Vector2.js";
 import { Entity } from "./Entity.js";
-import { Item } from "./items/Item.js";
 import { ItemSlot } from "./ItemSlot.js";
 import { Rect } from "./Rect.js";
+import { Wood } from "./items/Wood.js";
 export class Inventory extends Entity {
     backpack = [];
     backpackSize = new Vector2(8, 4);
@@ -36,7 +36,7 @@ export class Inventory extends Entity {
     #onMouseDown(event) {
         for (const itemSlot of this.backpack) {
             if (itemSlot.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
-                itemSlot.item_ = new Item(this.scene, itemSlot.rect.shape.origin, itemSlot.rect.size, "wood");
+                itemSlot.item = new Wood(this.scene, itemSlot.rect.shape.origin);
                 console.log(itemSlot);
             }
         }
