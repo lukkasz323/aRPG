@@ -3,5 +3,5 @@ import { Rect } from "../Rect.js";
 import { Item } from "./Item.js";
 
 export interface IItem {
-    item: Item;
+    $item: Item;
 }
