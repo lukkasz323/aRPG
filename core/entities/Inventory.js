@@ -35,8 +35,8 @@ export class Inventory extends Entity {
     }
     #onMouseDown(event) {
         for (const itemSlot of this.backpack) {
-            if (itemSlot.rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
-                itemSlot.item = new Wood(this.scene, itemSlot.rect.shape.origin);
+            if (itemSlot.$rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
+                itemSlot.item = new Wood(this.scene, itemSlot.$rect.$shape.origin);
                 console.log(itemSlot);
             }
         }
