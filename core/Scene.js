@@ -3,6 +3,7 @@ import { InputState } from "./InputState.js";
 import { Player } from "./entities/Player.js";
 import { Level } from "./entities/Level.js";
 import { Camera } from "./entities/Camera.js";
+import { Enemy } from "./entities/Enemy.js";
 export class Scene {
     entities = [];
     dataByName;
@@ -21,6 +22,7 @@ export class Scene {
         this.entities.push(this.level);
         this.entities.push(this.player);
         this.entities.push(this.camera);
+        this.entities.push(new Enemy(this, new Vector2(canvas.width / 2 - 64, canvas.height / 2 - 64), canvas));
         console.log(this); // Debug
     }
     update() {
