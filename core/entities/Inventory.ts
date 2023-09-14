@@ -107,9 +107,9 @@ export class Inventory extends Entity {
     }
 
     #onMouseDown(event: PointerEvent): void {
-        for (const itemSlot of this.backpack) {
-            if (!itemSlot.isEnabled) { return; }
+        if (!this.isEnabled) { return; }
 
+        for (const itemSlot of this.backpack) {
             if (itemSlot.$rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
                 itemSlot.item = new Wood(this.scene, itemSlot.$rect.$shape.origin);
                 console.log(itemSlot);
@@ -118,14 +118,10 @@ export class Inventory extends Entity {
     }
 
     open(): void {
-        for (const child of this.children) {
-            child.isEnabled = true;
-        }
+        this.isEnabled = true;
     }
 
     close(): void {
-        for (const child of this.children) {
-            child.isEnabled = false;
-        }
+        this.isEnabled = false;
     }
 }

@@ -34,10 +34,10 @@ export class Inventory extends Entity {
         scene.canvas.addEventListener("mousedown", (event) => this.#onMouseDown(event));
     }
     #onMouseDown(event) {
+        if (!this.isEnabled) {
+            return;
+        }
         for (const itemSlot of this.backpack) {
-            if (!itemSlot.isEnabled) {
-                return;
-            }
             if (itemSlot.$rect.isCollidingWithPoint(this.scene.input.mouse.screenOrigin)) {
                 itemSlot.item = new Wood(this.scene, itemSlot.$rect.$shape.origin);
                 console.log(itemSlot);
@@ -45,13 +45,9 @@ export class Inventory extends Entity {
         }
     }
     open() {
-        for (const child of this.children) {
-            child.isEnabled = true;
-        }
+        this.isEnabled = true;
     }
     close() {
-        for (const child of this.children) {
-            child.isEnabled = false;
-        }
+        this.isEnabled = false;
     }
 }
