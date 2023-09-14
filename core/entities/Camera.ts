@@ -13,7 +13,7 @@ export class Camera extends Entity {
     }
 
     _update(): void {
-        this.origin.x = this.scene.player.$circle.$shape.origin.x - this.offset.x;
-        this.origin.y = this.scene.player.$circle.$shape.origin.y - this.offset.y;
+        this.origin.x = this.scene.player.character.$circle.$shape.origin.x - this.offset.x;
+        this.origin.y = this.scene.player.character.$circle.$shape.origin.y - this.offset.y;
     }
 }

@@ -16,7 +16,7 @@ export class Scene {
         this.canvas = canvas;
         this.input = new InputState(this);
         this.level = new Level(this, dataByName["level"]);
-        this.player = new Player(this, new Vector2(100, 100), canvas);
+        this.player = new Player(this, new Vector2(canvas.width / 2, canvas.height / 2), canvas);
         this.camera = new Camera(this, canvas);
         this.entities.push(this.level);
         this.entities.push(this.player);
